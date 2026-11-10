@@ -1,8 +1,0 @@
-﻿=== mtimes ===
-Assets\Scripts\GameManager.cs  ::  09-16 12:26:03
-Assets\Scripts\Player\PlayerData.cs  ::  09-15 01:09:40
-Assets\Scripts\Pen\PenController.cs  ::  09-15 18:36:25
-Assets\Scripts\Setup\MatchSetupManager.cs  ::  09-14 22:01:31
-Assets\Scenes\SampleScene.unity  ::  09-16 12:30:13
-=== Scripts/Map exists? ===
-False

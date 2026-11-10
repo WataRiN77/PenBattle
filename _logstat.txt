@@ -1,5 +1,0 @@
-﻿total lines: 2023
---- [MapManager] count: 0
---- [出生点] count: 0
---- SelectAndApply count: 0
---- 第 .* 小局 count: 0

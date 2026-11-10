@@ -1,8 +1,0 @@
-﻿=== is git repo ===
-fatal: not a git repository (or any of the parent directories): .git
-=== last 12 commits ===
-fatal: not a git repository (or any of the parent directories): .git
-=== status ===
-fatal: not a git repository (or any of the parent directories): .git
-=== scenes ===
-D:\PenBattle\Assets\Scenes\SampleScene.unity

@@ -1,5 +1,0 @@
-﻿=== PackageCache 里的 netcode / transport ===
-com.unity.netcode.gameobjects@1.15.1
-com.unity.transport@1.5.0
-=== 找 NetworkManager.cs ===
-D:\PenBattle\Library\PackageCache\com.unity.netcode.gameobjects@1.15.1\Runtime\Core\NetworkManager.cs

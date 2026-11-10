@@ -1,6 +1,0 @@
-﻿=== Components 目录 ===
-=== 全包搜 NetworkRigidbody*.cs ===
-\Components\NetworkRigidbody.cs
-\Components\NetworkRigidbody2D.cs
-\Tests\Runtime\Physics\NetworkRigidbody2DTest.cs
-\Tests\Runtime\Physics\NetworkRigidbodyTest.cs
