@@ -1,0 +1,62 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>十一、产品设计：用户是谁、在什么时候玩</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>05 产品设计 · 支撑</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 16, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>用户画像</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    18–30 岁，学生与初入职场人群；共享"课桌弹笔"这一校园记忆。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.55 }}>
+                    · 玩家类型：轻竞技 / 派对向<br />
+                    · 审美偏好：明快、低门槛、无需长学习<br />
+                    · 时间特征：碎片时间，单局 3–5 分钟
+                </Text>
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【占位填写】可用问卷或访谈补充真实样本</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>主场景：朋友间轻量对战</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    2–4 人局域网或线上开黑，一局几分钟，胜负之外的看点来自物理的意外结果。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.55 }}>
+                    · 社交驱动：需要"有人一起"<br />
+                    · 传播路径：朋友间自发推荐
+                </Text>
+                <Text style={{ fontSize: 18, color: '#1E4FA8', fontWeight: 'bold' }}>本课题的主验证场景</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>次场景：本地热座 / 练习</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    覆盖私人碎片时间：同一设备轮流操作，或单人熟悉物理手感与构筑。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.55 }}>
+                    · 解决问题：没朋友在线时也能玩<br />
+                    · 同时作为新玩家的上手通道
+                </Text>
+                <Text style={{ fontSize: 18, color: '#D9534F', fontWeight: 'bold' }}>说明：本原型不含游戏内 AI 对手</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 16, borderRadius: 6 }}>
+            <Text style={{ fontSize: 21, color: '#FFFFFF', lineHeight: 1.5 }}>
+                "我能给用户什么好处"：<span style={{ fontWeight: 'bold' }}>用几分钟的碎片时间，换一次有意外、有记忆点的对战</span> ——
+                怀旧共鸣提供进入理由，物理意外提供讨论素材，构筑提供再来一局的理由。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>13 / 19</Text>
+    </Box>
+</Slide>
+
+

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a008a871720b14fb12a05264a219ef, type: 3}
+  m_Name: SkillCfg_default1
+  m_EditorClassIdentifier: 
+  skillId: skill_default1
+  displayName: "\u6280\u80FD1"
+  icon: {fileID: 0}
+  description: "\u5F39\u6027\u63D0\u5347\uFF08\u81EA\u8EAB\uFF09"
+  type: 1
+  value: 3
+  targetMode: 0
+  usesPerRound: 1

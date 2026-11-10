@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PenBattle 招募系列图 v2 · 卡通明亮</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700;900&display=swap');
+
+  :root{
+    --ink:#2E2A4A;
+    --ink-soft:#5B5580;
+
+    --coral:#FF6B5B;
+    --coral-d:#F04E3C;
+    --sun:#FFD93D;
+    --mint:#5FD8A0;
+    --grape:#A78BFA;
+    --bubble:#4FC3F7;
+    --peach:#FFB4A2;
+    --cream:#FFFDF5;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#6C7A96;
+    font-family:"Noto Sans SC",system-ui,-apple-system,sans-serif;
+    padding:30px 0;
+    display:flex;flex-direction:column;align-items:center;gap:34px;
+  }
+
+  /* ================= 画布 ================= */
+  .slide{
+    width:750px;height:1000px;
+    position:relative;
+    overflow:hidden;
+    flex-shrink:0;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 93% -4%, rgba(255,214,61,.9) 0 94px, transparent 95px),
+      linear-gradient(180deg,#C6EDFF 0%,#E9FAFF 44%,#FFFDF5 100%);
+  }
+
+  /* 底部弧形草地 */
+  .slide::after{
+    content:"";
+    position:absolute;left:-15%;right:-15%;bottom:-230px;
+    height:400px;
+    border-radius:50% 50% 0 0;
+    background:#D2F3E2;
+    z-index:0;
+  }
+
+  /* 云朵 */
+  .cloud{
+    position:absolute;z-index:0;
+    background:#fff;
+    border-radius:100px;
+    opacity:.9;
+  }
+  .cloud::before,.cloud::after{
+    content:"";position:absolute;background:#fff;border-radius:50%;
+  }
+  .cloud.c1{width:120px;height:40px;left:-52px;top:46px;}
+  .cloud.c1::before{width:52px;height:52px;left:20px;top:-20px;}
+  .cloud.c1::after{width:36px;height:36px;left:64px;top:-12px;}
+  .cloud.c2{width:96px;height:34px;right:-40px;top:112px;opacity:.8;}
+  .cloud.c2::before{width:42px;height:42px;left:15px;top:-17px;}
+  .cloud.c2::after{width:30px;height:30px;left:50px;top:-10px;}
+
+  /* 闪光 */
+  .spark{position:absolute;z-index:0;color:#FFD93D;}
+  .spark.s1{left:56px;top:250px;font-size:24px;}
+  .spark.s2{right:62px;top:210px;font-size:19px;}
+  .spark.s3{right:96px;bottom:236px;font-size:22px;color:#4FC3F7;}
+
+  /* ================= 编号徽章 ================= */
+  .badge{
+    position:absolute;top:34px;left:40px;z-index:9;
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);
+    color:#fff;
+    font-size:17px;font-weight:900;
+    letter-spacing:.06em;
+    padding:9px 22px;
+    border-radius:100px;
+    transform:rotate(-3deg);
+    box-shadow:0 5px 0 rgba(46,42,74,.35);
+  }
+  .badge b{color:var(--sun);}
+
+  /* ================= 内容容器 ================= */
+  .wrap{
+    position:relative;z-index:3;
+    height:100%;
+    display:flex;flex-direction:column;
+    padding:82px 44px 184px;
+  }
+
+  /* 主标题：底层描边 + 上层白字，做出贴纸般的干净轮廓 */
+  .tit{
+    font-size:82px;font-weight:900;
+    line-height:1.2;
+    letter-spacing:.01em;
+    color:#fff;
+    text-align:center;
+    position:relative;
+    z-index:0;
+    text-shadow:0 6px 0 var(--ink);
+    margin-bottom:22px;
+    flex-shrink:0;
+  }
+  .tit em{font-style:normal;color:var(--sun);}
+  /* 描边层（由脚本克隆生成，垫在填充文字下方） */
+  .tit .stroke{
+    position:absolute;inset:0;
+    z-index:-1;
+    color:transparent !important;
+    -webkit-text-stroke:9px var(--ink);
+    stroke-linejoin:round;
+    stroke-linecap:round;
+    text-shadow:none !important;
+    pointer-events:none;
+  }
+  .tit .stroke em{color:transparent !important;}
+
+  /* 副标题胶囊 */
+  .sub{
+    align-self:center;
+    background:var(--bubble);
+    color:#fff;
+    border:4px solid var(--ink);
+    border-radius:100px;
+    padding:11px 26px;
+    font-size:22px;font-weight:900;
+    letter-spacing:.02em;
+    box-shadow:0 6px 0 var(--ink);
+    transform:rotate(-1.5deg);
+    text-shadow:0 2px 0 rgba(46,42,74,.4);
+    margin-bottom:24px;
+    flex-shrink:0;
+  }
+  .sub em{font-style:normal;color:var(--sun);}
+  .sub.pink{background:#FF8FB1;}
+  .sub.mint{background:var(--mint);}
+
+  /* 正文区 */
+  .body{
+    flex:1;min-height:0;
+    display:flex;flex-direction:column;
+    gap:12px;
+    justify-content:flex-start;
+  }
+  .body.center{justify-content:center;}
+
+  /* 章节小标 */
+  .tag{
+    align-self:flex-start;
+    background:var(--sun);
+    border:4px solid var(--ink);
+    border-radius:100px;
+    padding:8px 22px;
+    font-size:20px;font-weight:900;
+    box-shadow:0 5px 0 var(--ink);
+    transform:rotate(-2deg);
+    margin-bottom:0;
+    flex-shrink:0;
+  }
+  .tag.coral{background:var(--coral);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+  .tag.mint{background:var(--mint);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+  .tag.grape{background:var(--grape);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+  .tag.bubble{background:var(--bubble);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+
+  /* 信息卡 */
+  .card{
+    background:#fff;
+    border:4px solid var(--ink);
+    border-radius:24px;
+    padding:14px 20px;
+    display:flex;align-items:center;gap:16px;
+    font-size:20px;font-weight:800;
+    color:var(--ink);
+    box-shadow:0 6px 0 var(--ink);
+    line-height:1.3;
+    flex-shrink:0;
+  }
+  .card .ic{
+    width:50px;height:50px;flex-shrink:0;
+    border:4px solid var(--ink);
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:25px;
+    box-shadow:0 4px 0 var(--ink);
+  }
+  .ic.y{background:var(--sun);}
+  .ic.c{background:var(--coral);}
+  .ic.m{background:var(--mint);}
+  .ic.g{background:var(--grape);}
+  .ic.b{background:var(--bubble);}
+  .ic.p{background:var(--peach);}
+
+  /* 横贯横幅（进度/一句话结论） */
+  .banner{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    background:var(--mint);
+    border:4px solid var(--ink);
+    border-radius:100px;
+    padding:14px 22px;
+    font-size:20px;font-weight:900;
+    color:#fff;
+    text-shadow:0 2px 0 rgba(46,42,74,.45);
+    box-shadow:0 6px 0 var(--ink);
+    transform:rotate(-.8deg);
+    flex-shrink:0;
+  }
+  .banner .ok{
+    width:30px;height:30px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:#fff;
+    color:var(--mint);
+    border:3px solid var(--ink);
+    border-radius:50%;
+    font-size:19px;
+    text-shadow:none;
+  }
+
+  /* 彩色胶囊组 */
+  .chips{display:flex;flex-wrap:wrap;gap:12px;}
+  .chip{
+    border:4px solid var(--ink);
+    border-radius:100px;
+    padding:10px 24px;
+    font-size:20px;font-weight:900;
+    background:#fff;
+    box-shadow:0 5px 0 var(--ink);
+  }
+  .chip.y{background:var(--sun);}
+  .chip.c{background:var(--coral);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+  .chip.m{background:var(--mint);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+  .chip.g{background:var(--grape);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+  .chip.b{background:var(--bubble);color:#fff;text-shadow:0 2px 0 rgba(46,42,74,.35);}
+
+  /* 项目名条 */
+  .nameplate{
+    display:flex;align-items:center;gap:16px;
+    background:var(--ink);
+    border:5px solid var(--ink);
+    border-radius:26px;
+    padding:16px 22px;
+    box-shadow:0 8px 0 rgba(46,42,74,.35);
+    margin-bottom:18px;
+    flex-shrink:0;
+  }
+  .nameplate .die{font-size:36px;line-height:1;}
+  .nameplate .nm{
+    font-size:40px;font-weight:900;
+    color:var(--sun);
+    letter-spacing:.02em;
+    text-shadow:0 4px 0 rgba(0,0,0,.35);
+  }
+  .nameplate .kind{
+    margin-left:auto;
+    background:var(--coral);
+    color:#fff;
+    border:4px solid #fff;
+    border-radius:100px;
+    padding:8px 18px;
+    font-size:17px;font-weight:900;
+    transform:rotate(-2deg);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+
+  /* 主视觉照片卡 */
+  .photo{
+    position:absolute;z-index:2;
+    border:6px solid #fff;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 10px 0 rgba(46,42,74,.28);
+  }
+  .photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* 参考作品 */
+  .refs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .ref{
+    border:4px solid var(--ink);
+    border-radius:20px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 5px 0 var(--ink);
+  }
+  .ref .pic{width:100%;aspect-ratio:460/215;overflow:hidden;border-bottom:4px solid var(--ink);background:#ddd;}
+  .ref .pic img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ref .rn{font-size:13px;font-weight:900;text-align:center;padding:4px 3px;color:var(--ink);}
+
+  /* 占位 */
+  .ph{
+    border:4px dashed #B9B2D6;
+    border-radius:26px;
+    padding:34px 24px;
+    text-align:center;
+    font-size:19px;font-weight:900;
+    color:#8B84AB;
+    line-height:1.6;
+    background:rgba(255,255,255,.72);
+  }
+  .ph b{color:var(--coral);}
+  /* 待补充的参考图占位 */
+  .ph.pic{
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    gap:10px;
+    padding:0;
+    font-size:17px;
+    flex-shrink:0;
+    line-height:1.4;
+  }
+  .ph.pic .em{font-size:40px;line-height:1;}
+
+  /* 3D 参考图并排（按原比例，不裁切） */
+  .refrow{
+    display:flex;gap:8px;
+    justify-content:center;align-items:flex-end;
+    flex-shrink:0;
+  }
+  .refrow img{
+    height:234px;width:auto;display:block;
+    border:4px solid var(--ink);
+    border-radius:18px;
+    box-shadow:0 6px 0 var(--ink);
+    background:#fff;
+  }
+  /* 两列参考卡 */
+  .refs.two{grid-template-columns:repeat(2,1fr);}
+
+  /* 游戏画面图：完整显示原比例，两侧用模糊延伸补满 */
+  .shot{
+    position:relative;
+    border:5px solid var(--ink);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 7px 0 var(--ink);
+    flex-shrink:0;
+    background:#dceade;
+  }
+  .shot .blur{
+    position:absolute;inset:-30px;
+    background-size:cover;
+    background-position:center;
+    filter:blur(60px) saturate(.5) brightness(1.16);
+    transform:scale(1.4);
+    opacity:.32;
+    z-index:0;
+  }
+  .shot img{
+    position:relative;z-index:1;
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  /* 一行式信息条 */
+  .facts{
+    display:flex;align-items:center;justify-content:center;gap:11px;
+    font-size:16px;font-weight:900;
+    color:var(--ink-soft);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .facts i{width:7px;height:7px;border-radius:50%;background:var(--sun);display:block;flex-shrink:0;}
+  .cap{font-size:14px;font-weight:900;color:var(--ink-soft);text-align:center;flex-shrink:0;}
+
+  /* ================= CTA ================= */
+  .cta-wrap{
+    position:absolute;left:0;right:0;bottom:0;z-index:8;
+    padding:0 44px 44px;
+  }
+  .cta{
+    display:flex;align-items:center;justify-content:center;gap:16px;
+    background:linear-gradient(180deg,#FF8E5E 0%,var(--coral) 100%);
+    border:5px solid var(--ink);
+    border-radius:100px;
+    padding:22px 28px;
+    font-size:30px;font-weight:900;
+    color:#fff;
+    letter-spacing:.02em;
+    box-shadow:0 9px 0 var(--ink);
+    text-shadow:0 3px 0 rgba(46,42,74,.5);
+    transform:rotate(-.8deg);
+  }
+  .cta svg.mail{width:38px;height:30px;flex-shrink:0;display:block;}
+  .cta-line{
+    text-align:center;
+    font-size:16px;font-weight:900;
+    color:var(--ink-soft);
+    margin-top:14px;
+  }
+  .cta-line b{color:var(--coral);}
+</style>
+</head>
+<body>
+
+<!-- ==================== 图 1 封面 ==================== -->
+<div class="slide" data-name="01-cover">
+  <div class="spark s2">✦</div>
+  <div class="spark s3">✦</div>
+  <div class="badge"><b>01</b> / 招募</div>
+
+  <div class="wrap">
+    <div class="tit" style="margin-top:6px;font-size:74px;">独立游戏<br><em>招募</em></div>
+    <div class="sub">寻找 3D美术 · 平面美术 · 音效</div>
+
+    <div class="body" style="gap:14px;">
+      <div class="nameplate" style="margin-bottom:0;padding:14px 22px;">
+        <span class="die">🎲</span>
+        <span class="nm">《弹笔大战》</span>
+        <span class="kind">多人派对游戏</span>
+      </div>
+
+      <div class="shot" style="aspect-ratio:662/340;">
+        <div class="blur" style="background-image:url('shots/01-clash.png')"></div>
+        <img src="shots/01-clash.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta"><svg class="mail" viewBox="0 0 38 30"><rect x="2" y="2" width="34" height="26" rx="5" fill="#fff" stroke="#2E2A4A" stroke-width="4"/><path d="M5.5 7 L19 17.5 L32.5 7" fill="none" stroke="#FF6B5B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欢迎私信交流</div>
+  </div>
+</div>
+
+<!-- ==================== 图 2 游戏介绍 ==================== -->
+<div class="slide" data-name="02-intro">
+  <div class="cloud c2"></div>
+  <div class="spark s1">✦</div>
+  <div class="badge"><b>02</b> / 游戏介绍</div>
+
+  <div class="wrap">
+    <div class="tit" style="font-size:72px;">这是个<br>什么游戏？</div>
+    <div class="sub pink">课桌上的物理对战派对游戏</div>
+
+    <div class="body" style="gap:10px;">
+      <div class="tag coral">核心玩法</div>
+      <div class="card"><span class="ic c">🎯</span><span>弹弓蓄力，把对手的笔弹出桌面</span></div>
+      <div class="card"><span class="ic g">🃏</span><span>每回合败者选强化，自由组合流派</span></div>
+      <div class="card"><span class="ic y">🏆</span><span>先积 3 分者获胜</span></div>
+
+      <div class="banner" style="margin-top:10px;"><span class="ok">✓</span><span>核心系统已跑通，正在补美术与 UI</span></div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta"><svg class="mail" viewBox="0 0 38 30"><rect x="2" y="2" width="34" height="26" rx="5" fill="#fff" stroke="#2E2A4A" stroke-width="4"/><path d="M5.5 7 L19 17.5 L32.5 7" fill="none" stroke="#FF6B5B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欢迎私信交流</div>
+  </div>
+</div>
+
+<!-- ==================== 图 3 3D建模招募 ==================== -->
+<div class="slide" data-name="03-model">
+  <div class="cloud c1" style="top:230px;"></div>
+  <div class="spark s3">✦</div>
+  <div class="spark s2">✦</div>
+  <div class="badge"><b>03</b> / 3D 建模招募</div>
+
+  <div class="wrap">
+    <div class="tit" style="font-size:60px;">想找一位<br><em>3D 建模</em></div>
+
+    <div class="body" style="gap:9px;">
+      <div class="card" style="padding:9px 20px;font-size:19px;"><span class="ic b" style="width:46px;height:46px;font-size:22px;border-radius:14px;">✏️</span><span>笔 · 不同造型与配色</span></div>
+      <div class="card" style="padding:9px 20px;font-size:19px;"><span class="ic m" style="width:46px;height:46px;font-size:22px;border-radius:14px;">🪵</span><span>桌面 · 场景与地图</span></div>
+      <div class="card" style="padding:9px 20px;font-size:19px;"><span class="ic c" style="width:46px;height:46px;font-size:22px;border-radius:14px;">📦</span><span>可破坏障碍物</span></div>
+      <div class="card" style="padding:9px 20px;font-size:19px;"><span class="ic g" style="width:46px;height:46px;font-size:22px;border-radius:14px;">🧍</span><span>简单人物 · 小小的人形</span></div>
+
+      <div class="cap">风格 · 卡通低模 / 高饱和 / 派对感</div>
+      <div class="refrow">
+        <img src="refs/3d-char.png" alt="">
+        <img src="refs/3d-house.png" alt="">
+        <img src="refs/3d-pen.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta"><svg class="mail" viewBox="0 0 38 30"><rect x="2" y="2" width="34" height="26" rx="5" fill="#fff" stroke="#2E2A4A" stroke-width="4"/><path d="M5.5 7 L19 17.5 L32.5 7" fill="none" stroke="#FF6B5B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欢迎私信交流</div>
+  </div>
+</div>
+
+<!-- ==================== 图 4 平面美术招募 ==================== -->
+<div class="slide" data-name="04-art">
+  <div class="cloud c2" style="top:240px;"></div>
+  <div class="spark s1">✦</div>
+  <div class="spark s2">✦</div>
+  <div class="badge"><b>04</b> / 平面美术招募</div>
+
+  <div class="wrap">
+    <div class="tit" style="font-size:60px;">想找一位<br><em>平面美术</em></div>
+
+    <div class="body" style="gap:9px;">
+      <div class="card"><span class="ic c">🃏</span><span>卡牌插画 · 强化卡面 / 技能图标</span></div>
+      <div class="card"><span class="ic g">🏷</span><span>流派图标 · 火 / 冰 / 冲击波</span></div>
+      <div class="card"><span class="ic y">🖱️</span><span>UI 元素 · 按钮 / 面板 / 血条</span></div>
+
+      <div class="cap">风格 · 卡通低模 / 高饱和 / 派对感</div>
+      <div class="refs two">
+        <div class="ref">
+          <div class="pic" style="aspect-ratio:324/222;"><img src="refs/ref-overcooked.jpg" alt=""></div>
+          <div class="rn">Overcooked · 胡闹厨房</div>
+        </div>
+        <div class="ref">
+          <div class="pic" style="aspect-ratio:324/222;"><img src="refs/ref-fallflat.jpg" alt=""></div>
+          <div class="rn">Human: Fall Flat</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta"><svg class="mail" viewBox="0 0 38 30"><rect x="2" y="2" width="34" height="26" rx="5" fill="#fff" stroke="#2E2A4A" stroke-width="4"/><path d="M5.5 7 L19 17.5 L32.5 7" fill="none" stroke="#FF6B5B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欢迎私信交流</div>
+  </div>
+</div>
+
+<!-- ==================== 图 5 音乐音效 ==================== -->
+<div class="slide" data-name="05-audio">
+  <div class="cloud c2" style="top:220px;"></div>
+  <div class="spark s1">✦</div>
+  <div class="badge"><b>05</b> / 音乐音效招募</div>
+
+  <div class="wrap">
+    <div class="tit" style="font-size:66px;">想找<br>什么样的<em>声音</em>？</div>
+
+    <div class="body" style="gap:12px;">
+      <div class="tag coral">主要内容</div>
+      <div class="card"><span class="ic c">🎵</span><span>BGM · 输赢反馈音</span></div>
+      <div class="card"><span class="ic b">🔊</span><span>情境音效 · 撞击 / 冰冻 / UI 交互</span></div>
+
+      <div class="chips" style="margin-top:2px;">
+        <span class="chip y">卡通电子</span>
+        <span class="chip c">欢乐律动</span>
+        <span class="chip m">轻微荒诞</span>
+      </div>
+
+      <div class="tag grape" style="margin-top:8px;">可参考</div>
+      <div class="refs">
+        <div class="ref">
+          <div class="pic"><img src="refs/ref-trickytowers.jpg" alt=""></div>
+          <div class="rn">Tricky Towers</div>
+        </div>
+        <div class="ref">
+          <div class="pic"><img src="refs/ref-slaythespire.jpg" alt=""></div>
+          <div class="rn">Slay the Spire</div>
+        </div>
+        <div class="ref">
+          <div class="pic"><img src="refs/ref-ittakestwo.jpg" alt=""></div>
+          <div class="rn">It Takes Two</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta"><svg class="mail" viewBox="0 0 38 30"><rect x="2" y="2" width="34" height="26" rx="5" fill="#fff" stroke="#2E2A4A" stroke-width="4"/><path d="M5.5 7 L19 17.5 L32.5 7" fill="none" stroke="#FF6B5B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欢迎私信交流</div>
+  </div>
+</div>
+
+<!-- ==================== 图 6 合作方式 ==================== -->
+<div class="slide" data-name="06-coop">
+  <div class="cloud c2" style="top:250px;"></div>
+  <div class="spark s1">✦</div>
+  <div class="spark s2">✦</div>
+  <div class="badge"><b>06</b> / 合作方式</div>
+
+  <div class="wrap">
+    <div class="tit" style="font-size:70px;">你能从<br>这里获得什么？</div>
+
+    <div class="body" style="gap:14px;">
+      <div class="tag mint">你能获得</div>
+      <div class="card"><span class="ic g">🎮</span><span>一款完整发布上线的 3D 多人游戏</span></div>
+      <div class="card"><span class="ic b">📁</span><span>能写进作品集的真实项目</span></div>
+      <div class="card"><span class="ic y">✍</span><span>正式署名 · 参赛共同署名</span></div>
+
+      <div class="tag bubble" style="margin-top:16px;">合作方式</div>
+      <div class="card"><span class="ic m">🌐</span><span>可接受远程 · 每周 4~5 小时 · 一起做完</span></div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta"><svg class="mail" viewBox="0 0 38 30"><rect x="2" y="2" width="34" height="26" rx="5" fill="#fff" stroke="#2E2A4A" stroke-width="4"/><path d="M5.5 7 L19 17.5 L32.5 7" fill="none" stroke="#FF6B5B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>欢迎私信交流</div>
+  </div>
+</div>
+
+</body>
+<script>
+  // 标题描边层：克隆一份文字垫在下面，做出干净的外轮廓
+  (function(){
+    var tits = document.querySelectorAll('.tit');
+    for (var i = 0; i < tits.length; i++) {
+      var s = document.createElement('span');
+      s.className = 'stroke';
+      s.setAttribute('aria-hidden', 'true');
+      s.innerHTML = tits[i].innerHTML;
+      tits[i].appendChild(s);
+    }
+  })();
+
+  (function(){
+    var m = location.search.match(/only=(\d+)/);
+    if (!m) return;
+    var idx = parseInt(m[1], 10);
+    var slides = document.querySelectorAll('.slide');
+    for (var i = 0; i < slides.length; i++) {
+      if (i !== idx - 1) slides[i].style.display = 'none';
+    }
+    document.body.style.padding = '0';
+    document.body.style.gap = '0';
+  })();
+</script>
+</html>

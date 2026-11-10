@@ -1,0 +1,69 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>八、技术探索②：三层时序与回合状态机</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>04 研究内容 · 技术为主</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 16 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 16, gap: 6 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>小局 Round</Text>
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>从开局到只剩一名玩家存活；先积 3 分者胜出整场</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 16, gap: 6 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>回合 Turn</Text>
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>小局内每位存活玩家各行动一次；一个小局含多个回合</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 16, gap: 6 }}>
+                <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E4FA8' }}>行动 Action</Text>
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>单个玩家的一次操作：发射 / 放置 / 使用技能</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 10, flex: 1 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>回合状态机</Text>
+            <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 20, color: '#0E3F8C', fontWeight: 'bold' }}>Idle</Text>
+                </Box>
+                <Text style={{ fontSize: 22, color: '#8B97A8' }}>→</Text>
+                <Box style={{ background: '#1E4FA8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>Action</Text>
+                </Box>
+                <Text style={{ fontSize: 22, color: '#8B97A8' }}>→</Text>
+                <Box style={{ background: '#3D7BD9', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>Resolving</Text>
+                </Box>
+                <Text style={{ fontSize: 22, color: '#8B97A8' }}>→</Text>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 20, color: '#0E3F8C', fontWeight: 'bold' }}>RoundEnd</Text>
+                </Box>
+                <Text style={{ fontSize: 22, color: '#8B97A8' }}>→</Text>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 20, color: '#0E3F8C', fontWeight: 'bold' }}>MatchEnd</Text>
+                </Box>
+            </Box>
+            <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.55 }}>
+                Resolving 阶段等待物理静止，是"实时"与"回合"的交界点；
+                行动结束事件统一在切换玩家的环节广播，避免被动与状态效果漏触发。
+            </Text>
+            <Box style={{ height: 1, background: '#E5E7EB' }} />
+            <Text style={{ fontSize: 19, color: '#4A5568' }}>
+                术语在全文与代码中保持一致，便于后续实验记录与结果复述。
+            </Text>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 14, borderRadius: 6 }}>
+            <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>
+                对 RQ 的作用：三层时序让"物理过程"被装进"回合边界"里 —— 每个回合都以静止状态开始与结束，天然降低了状态漂移。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>10 / 19</Text>
+    </Box>
+</Slide>
+
+

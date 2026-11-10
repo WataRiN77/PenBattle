@@ -1,0 +1,19 @@
+﻿=== GameManager 改动 ===
+
+
+=== MapManager Start ===
+private void Start()
+    {
+        // 预热：比赛还没开始时先装一张随机地图，避免选笔 / 开局强化阶段场景是空的
+        if (CurrentInstance == null) SelectAndApply();
+    }
+
+    // 每小局开始时调用：抽一张并装载
+    public void SelectAndApply()
+    {
+        var map = Pi
+
+=== 三张地图 prefab 的 MD5 ===
+Map_01.prefab  20087 B  937E2828CBBB01896CD7C8AF65FA7865
+Map_02.prefab  20087 B  52E1ABF51D8CCC2A03EE34CFAB268F87
+Map_03.prefab  20100 B  6744966CD9DFAFF330862D464719C90C

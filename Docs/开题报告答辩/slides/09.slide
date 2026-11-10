@@ -1,0 +1,67 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>七、技术探索①：实时物理与参数解耦</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>04 研究内容 · 技术为主</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 16, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>四个物理参数分离</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    质量 mass / 弹性 bounciness / 摩擦 friction / 线性阻尼 linearDrag 各自独立。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#D9534F' }}>
+                    工程教训：最初用 friction 充当"滑行阻尼"，导致手感调不准，后拆分为独立参数。
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>施力方式</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    弹弓式拖拽发射：方向与力度来自拖拽向量，用 AddForceAtPosition 作用于点击点。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568' }}>
+                    施力点不同 → 产生不同的旋转与走位，构成操作深度。
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>物理静止判定</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    按固定间隔轮询刚体速度，低于阈值并持续一段时间后判定静止，才结束本次行动。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568' }}>
+                    这是"实时物理"与"回合制"之间的关键闸门。
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', gap: 16 }}>
+            <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 6, padding: 16 }}>
+                <Text style={{ fontSize: 20, color: '#1A2230' }}>
+                    <span style={{ fontWeight: 'bold', color: '#0E3F8C' }}>参数随笔走：</span>5 支笔各有独立参数，重笔为质量 ×2、发射力 ×2
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 6, padding: 16 }}>
+                <Text style={{ fontSize: 20, color: '#1A2230' }}>
+                    <span style={{ fontWeight: 'bold', color: '#0E3F8C' }}>状态可叠加：</span>冰冻只改摩擦、不影响速度，避免多重效果互相污染
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 14, borderRadius: 6 }}>
+            <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>
+                对 RQ 的作用：参数解耦是"可复现性"的前提 —— 效果各自作用于单一参数，结果才可被追踪与还原。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>09 / 19</Text>
+    </Box>
+</Slide>
+
+

@@ -1,0 +1,73 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>十五、进度计划与风险应对</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>06 计划与风险</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 10 }}>
+            <Box style={{ flex: 1, background: '#1E4FA8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#FFFFFF', fontWeight: 'bold' }}>① 核心玩法</Text>
+                <Text style={{ fontSize: 17, color: '#C9D9F2' }}>物理与发射手感</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#1E4FA8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#FFFFFF', fontWeight: 'bold' }}>② 放置操作</Text>
+                <Text style={{ fontSize: 17, color: '#C9D9F2' }}>回合内补充操作</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#1E4FA8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#FFFFFF', fontWeight: 'bold' }}>③ 选笔与技能</Text>
+                <Text style={{ fontSize: 17, color: '#C9D9F2' }}>配置化数据</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#1E4FA8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#FFFFFF', fontWeight: 'bold' }}>④ 开局强化</Text>
+                <Text style={{ fontSize: 17, color: '#C9D9F2' }}>构筑系统</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>⑤ 败者强化</Text>
+                <Text style={{ fontSize: 17, color: '#4A5568' }}>进行中</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>⑥ 联机同步</Text>
+                <Text style={{ fontSize: 17, color: '#4A5568' }}>计划中</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#E8EFF8', borderRadius: 4, padding: 12 }}>
+                <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>⑦ UI 与打磨</Text>
+                <Text style={{ fontSize: 17, color: '#4A5568' }}>计划中</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', gap: 16, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>风险一 · 联机同步复杂度</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>物理同步容易失控，且调试成本高。</Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568' }}>应对：局域网优先、房主权威、人数限 2–4 人，先做可跑通的最小版本</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>风险二 · 物理不确定性</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>浮点误差与执行顺序可能导致结果不可复现。</Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568' }}>应对：固定时间步长、关键参数不依赖累积顺序，并实测一致率</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>风险三 · 时间不足</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>内容量与联机同时推进可能挤占论文时间。</Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 19, color: '#4A5568' }}>应对：先完成垂直切片，内容扩展与联机均置于可裁剪范围</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#FFC107', padding: 14, borderRadius: 6 }}>
+            <Text style={{ fontSize: 20, color: '#1A2230', fontWeight: 'bold' }}>
+                可裁剪项：联机模块、UI 美化、额外笔与强化的内容量 —— 均不影响课题主问题的回答。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>17 / 19</Text>
+    </Box>
+</Slide>
+
+

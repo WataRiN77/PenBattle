@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PenBattle 招募海报 · 卡通低模版</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+  :root{
+    --cream:#fff9f0;
+    --card:#ffffff;
+    --ink:#2b2340;
+    --ink-soft:#6b6280;
+    --line:#eae3f2;
+    --pink:#ff4d94;
+    --purple:#8b5cf6;
+    --blue:#22b8f0;
+    --green:#4fd166;
+    --yellow:#ffc22e;
+    --orange:#ff8a3d;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:#ddd6e8;
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:40px 20px;
+    font-family:"Noto Sans SC",system-ui,sans-serif;
+  }
+
+  .poster{
+    width:768px;
+    background:var(--cream);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(70,50,110,.32);
+    color:var(--ink);
+    display:flex;flex-direction:column;
+    border-radius:4px;
+  }
+
+  /* ================= 主视觉 ================= */
+  .hero{
+    position:relative;
+    height:470px;
+    flex-shrink:0;
+    overflow:hidden;
+    background:linear-gradient(170deg,#c9f5d9 0%,#d8f0ff 55%,#f3e4ff 100%);
+  }
+  /* 双图并排主视觉 */
+  .hero-duo{
+    position:absolute;inset:0;
+    display:flex;
+  }
+  .hero-a,.hero-b{
+    position:relative;
+    overflow:hidden;
+    height:100%;
+  }
+  .hero-a{width:56%;}
+  .hero-b{width:44%;}
+  /* 右侧图左边缘斜切，形成动感分割 */
+  .hero-b{
+    clip-path:polygon(7% 0,100% 0,100% 100%,0 100%);
+    margin-left:-3%;
+    padding-left:3%;
+  }
+  .hero-a img,.hero-b img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-a img{object-position:center 48%;}
+  .hero-b img{object-position:center 46%;}
+  /* 斜切缝：奶白实体窄条，干净不脏 */
+  .hero-b::before{
+    content:"";
+    position:absolute;left:7%;top:-10%;bottom:-10%;
+    width:5px;
+    background:#fff;
+    transform:rotate(0deg) skewX(-0deg);
+    z-index:3;
+    opacity:.92;
+  }
+
+  /* 底部向奶白过渡，让正文接得自然 */
+  .hero::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;height:130px;
+    background:linear-gradient(180deg,transparent,var(--cream));
+    z-index:2;
+  }
+  /* 右下角水印遮盖 */
+  .wm-mask{
+    position:absolute;right:0;bottom:0;
+    width:200px;height:100px;
+    background:radial-gradient(120% 140% at 100% 100%,rgba(238,240,250,1) 46%,rgba(238,240,250,.6) 66%,transparent 100%);
+    z-index:3;pointer-events:none;
+  }
+
+  /* 顶部标签 */
+  .kicker{
+    position:absolute;
+    top:34px;left:50px;
+    z-index:4;
+    display:inline-flex;align-items:center;gap:9px;
+    background:#fff;
+    padding:9px 18px 9px 14px;
+    border-radius:100px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.06em;
+    color:var(--ink);
+    box-shadow:0 4px 16px rgba(80,60,120,.16);
+  }
+  .kicker .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--pink);
+    box-shadow:0 0 0 3px rgba(255,77,148,.2);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+
+  /* 标题组 —— 骑在图文交界处 */
+  .title-group{
+    position:relative;
+    z-index:5;
+    margin-top:-78px;
+    padding:0 50px;
+  }
+  .title-cn{
+    font-size:78px;
+    font-weight:900;
+    line-height:1;
+    letter-spacing:.01em;
+    white-space:nowrap;
+    color:var(--ink);
+    /* 卡通描边 + 立体 */
+    text-shadow:
+      3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff,
+      0 8px 0 rgba(139,92,246,.28),
+      0 14px 26px rgba(90,60,150,.28);
+  }
+  .title-cn .hl-accent{
+    color:var(--purple);
+    text-shadow:
+      3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff,
+      0 8px 0 rgba(255,194,46,.55),
+      0 14px 26px rgba(90,60,150,.28);
+  }
+  .title-en{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.42em;
+    color:var(--ink-soft);
+    margin-top:12px;
+    text-transform:uppercase;
+  }
+  .title-sub{
+    display:flex;align-items:center;gap:11px;
+    margin-top:13px;
+    flex-wrap:wrap;
+  }
+  .title-sub span{
+    font-size:12.5px;font-weight:700;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:100px;
+    letter-spacing:.02em;
+    box-shadow:0 3px 0 rgba(90,60,150,.16);
+  }
+  .title-sub span:nth-child(1){background:var(--blue);}
+  .title-sub span:nth-child(3){background:var(--pink);}
+  .title-sub span:nth-child(5){background:var(--purple);}
+  .title-sub i{
+    width:4px;height:4px;border-radius:50%;
+    background:#cfc5e0;
+    flex-shrink:0;
+  }
+
+  /* ================= 正文 ================= */
+  .body{
+    padding:22px 50px 0;
+    display:flex;flex-direction:column;
+    flex:1;
+  }
+
+  .tagline{
+    font-size:14.5px;
+    line-height:1.85;
+    color:var(--ink-soft);
+    font-weight:500;
+    margin:16px 0 26px;
+    max-width:600px;
+  }
+  .tagline b{color:var(--pink);font-weight:900;}
+
+  .sec-label{
+    display:flex;align-items:center;gap:11px;
+    font-size:12px;font-weight:900;
+    letter-spacing:.1em;
+    color:var(--ink);
+    margin-bottom:13px;
+    text-transform:uppercase;
+  }
+  .sec-label .bar{
+    width:5px;height:17px;border-radius:3px;
+    background:var(--purple);
+  }
+  .sec-label .cn{
+    font-size:12.5px;font-weight:700;
+    color:var(--ink-soft);
+    letter-spacing:.04em;
+  }
+
+  /* 进度卡片 */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .stat{
+    background:var(--card);
+    border-radius:16px;
+    padding:15px 14px 13px;
+    box-shadow:0 5px 0 rgba(139,92,246,.13),0 10px 22px rgba(90,60,150,.09);
+    position:relative;
+    overflow:hidden;
+  }
+  .stat::before{
+    content:"";position:absolute;
+    left:0;top:0;bottom:0;width:5px;
+  }
+  .stat:nth-child(1)::before{background:var(--pink);}
+  .stat:nth-child(2)::before{background:var(--blue);}
+  .stat:nth-child(3)::before{background:var(--green);}
+  .stat:nth-child(4)::before{background:var(--yellow);}
+
+  .stat .num{
+    font-size:30px;font-weight:900;
+    line-height:1;
+    letter-spacing:-.01em;
+  }
+  .stat:nth-child(1) .num{color:var(--pink);}
+  .stat:nth-child(2) .num{color:var(--blue);}
+  .stat:nth-child(3) .num{color:#2baf47;}
+  .stat:nth-child(4) .num{color:#e8a013;}
+  .stat .num small{font-size:14px;font-weight:700;margin-left:2px;}
+  .stat .cap{
+    font-size:11.5px;font-weight:500;
+    color:var(--ink-soft);
+    margin-top:7px;
+    line-height:1.4;
+  }
+
+  /* 需求卡片 */
+  .want-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .want{
+    background:var(--card);
+    border-radius:16px;
+    padding:15px 16px;
+    display:flex;gap:12px;align-items:flex-start;
+    box-shadow:0 5px 0 rgba(139,92,246,.13),0 10px 22px rgba(90,60,150,.09);
+    border:2px solid transparent;
+    transition:.2s;
+  }
+  .want .idx{
+    font-size:12px;font-weight:900;
+    color:#fff;
+    width:26px;height:26px;
+    border-radius:9px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .want:nth-child(1) .idx{background:var(--pink);}
+  .want:nth-child(2) .idx{background:var(--orange);}
+  .want:nth-child(3) .idx{background:var(--blue);}
+  .want:nth-child(4) .idx{background:#2baf47;}
+
+  .want .txt h4{
+    font-size:14.5px;font-weight:900;
+    margin-bottom:5px;line-height:1.35;
+  }
+  .want .txt .tag{
+    display:inline-block;
+    font-size:9.5px;font-weight:900;
+    padding:2.5px 8px;
+    border-radius:100px;
+    margin-left:7px;
+    vertical-align:1.5px;
+    letter-spacing:.06em;
+    color:#fff;
+  }
+  .want:nth-child(1) .tag{background:var(--pink);}
+  .want:nth-child(2) .tag{background:var(--orange);}
+  .want:nth-child(3) .tag{background:var(--blue);}
+  .want:nth-child(4) .tag{background:#2baf47;}
+
+  .want .txt p{
+    font-size:11.5px;line-height:1.72;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+
+  /* 已实现标签 */
+  .highlights{
+    display:flex;flex-wrap:wrap;gap:9px;
+    margin-bottom:auto;
+    padding-bottom:6px;
+  }
+  .hl{
+    font-size:12px;font-weight:700;
+    padding:7px 15px;
+    border-radius:100px;
+    background:#fff;
+    color:var(--ink);
+    box-shadow:0 3px 0 rgba(139,92,246,.14),0 6px 14px rgba(90,60,150,.08);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .hl::before{
+    content:"✓";
+    font-size:11px;font-weight:900;
+    color:#2baf47;
+  }
+
+  /* 开放态度提示条 */
+  .openness{
+    display:flex;align-items:center;gap:13px;
+    background:linear-gradient(100deg,#fff4f9,#f3f0ff);
+    border:2px dashed #e3d4f5;
+    border-radius:14px;
+    padding:13px 17px;
+    margin-bottom:auto;
+  }
+  .openness-tag{
+    font-size:10.5px;font-weight:900;
+    color:#fff;
+    background:linear-gradient(100deg,#ff4d94,#8b5cf6);
+    padding:4px 11px;
+    border-radius:100px;
+    letter-spacing:.06em;
+    flex-shrink:0;
+  }
+  .openness-txt{
+    font-size:12px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .openness-txt b{color:var(--pink);font-weight:900;}
+
+  /* ================= 页脚 ================= */
+  .footer{
+    margin-top:18px;
+    padding:20px 50px 22px;
+    background:linear-gradient(105deg,#8b5cf6 0%,#a855f7 46%,#ff4d94 100%);
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    flex-shrink:0;
+    position:relative;
+    overflow:hidden;
+  }
+  /* 装饰圆点 */
+  .footer::before{
+    content:"";
+    position:absolute;right:150px;top:-40px;
+    width:150px;height:150px;border-radius:50%;
+    background:rgba(255,255,255,.1);
+  }
+  .footer::after{
+    content:"";
+    position:absolute;right:60px;bottom:-60px;
+    width:120px;height:120px;border-radius:50%;
+    background:rgba(255,194,46,.18);
+  }
+  .cta{position:relative;z-index:1;flex:1;min-width:0;}
+  .cta .q{
+    font-size:21px;font-weight:900;
+    color:#fff;
+    letter-spacing:.01em;
+    text-shadow:0 3px 0 rgba(90,30,120,.25);
+    line-height:1.25;
+  }
+  .cta .contact{
+    font-size:14px;font-weight:700;
+    color:#ffe8a3;
+    margin-top:10px;
+    letter-spacing:.03em;
+  }
+  .cta .contact span{
+    color:rgba(255,255,255,.68);
+    font-weight:500;margin-right:7px;font-size:12.5px;
+  }
+  .cta .note{
+    font-size:10.5px;
+    color:rgba(255,255,255,.7);
+    margin-top:6px;
+    font-weight:500;
+    letter-spacing:.02em;
+    white-space:nowrap;
+  }
+  .qr{
+    position:relative;z-index:1;
+    width:88px;height:88px;
+    border-radius:15px;
+    background:rgba(255,255,255,.94);
+    border:3px solid rgba(255,255,255,.65);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    font-size:10px;font-weight:700;
+    color:var(--ink-soft);
+    line-height:1.5;
+    flex-shrink:0;
+    padding:8px;
+    box-shadow:0 8px 20px rgba(70,20,100,.2);
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="hero">
+    <div class="hero-duo">
+      <div class="hero-a"><img src="hero-clash.png" alt=""></div>
+      <div class="hero-b"><img src="hero-cards.png" alt=""></div>
+    </div>
+    <div class="wm-mask"></div>
+    <div class="kicker"><span class="dot"></span>寻找毕设合作者 · 物理模拟 + 卡牌构筑</div>
+  </div>
+
+  <div class="title-group">
+    <div class="title-cn">弹笔<span class="hl-accent">大战</span></div>
+    <div class="title-en">P E N &nbsp; B A T T L E</div>
+    <div class="title-sub">
+      <span>3D 实时物理</span><i></i><span>多人联机派对</span><i></i><span>随机强化构筑</span>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="tagline">
+      课桌上的回合制物理对战。手指一弹，一支铅笔就是全部武器——<br>
+      撞飞对手、弹到桌外、抢下三分。现在需要一个让它<b>看起来也好看</b>的人。
+    </div>
+
+    <div class="sec-label"><span class="bar"></span>当前进度<span class="cn">Project Status</span></div>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">6<small>阶段</small></div>
+        <div class="cap">开发计划已完成 5 个</div>
+      </div>
+      <div class="stat">
+        <div class="num">4<small>人</small></div>
+        <div class="cap">局域网联机可跑通</div>
+      </div>
+      <div class="stat">
+        <div class="num">7<small>个</small></div>
+        <div class="cap">被动技能已实现</div>
+      </div>
+      <div class="stat">
+        <div class="num">3<small>张</small></div>
+        <div class="cap">地图系统已接入</div>
+      </div>
+    </div>
+
+    <div class="sec-label"><span class="bar"></span>需要你<span class="cn">We Need</span></div>
+    <div class="want-grid">
+      <div class="want">
+        <div class="idx">01</div>
+        <div class="txt">
+          <h4>3D 建模<span class="tag">3D</span></h4>
+          <p>各种"笔"的模型、桌面场景、可破坏障碍物。现有关卡是纯几何块，需要美术落地。</p>
+        </div>
+      </div>
+      <div class="want">
+        <div class="idx">02</div>
+        <div class="txt">
+          <h4>平面美术<span class="tag">2D</span></h4>
+          <p>卡牌插画、流派图标、UI 元素。强化系统已跑通，卡面正缺视觉。</p>
+        </div>
+      </div>
+      <div class="want">
+        <div class="idx">03</div>
+        <div class="txt">
+          <h4>特效 / 动效<span class="tag">VFX</span></h4>
+          <p>撞击火花、燃烧、冰冻、击飞轨迹。已有占位特效脚本，缺视觉资源。</p>
+        </div>
+      </div>
+      <div class="want">
+        <div class="idx">04</div>
+        <div class="txt">
+          <h4>UI / 界面<span class="tag">UI</span></h4>
+          <p>选笔界面、技能栏、分数板、强化三选一。功能已实现，界面是 Unity 默认样式。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label"><span class="bar"></span>已经能跑<span class="cn">What's Working</span></div>
+    <div class="highlights">
+      <div class="hl">3D 实时物理对战</div>
+      <div class="hl">回合制状态机</div>
+      <div class="hl">弹弓式蓄力射击</div>
+      <div class="hl">笔身技能绑定</div>
+      <div class="hl">被动技能系统</div>
+      <div class="hl">随机三选一强化</div>
+      <div class="hl">地图随机抽取</div>
+      <div class="hl">局域网房主权威同步</div>
+    </div>
+
+    <div class="openness">
+      <div class="openness-tag">开放</div>
+      <div class="openness-txt">
+        具体风格、内容可再议，<b>你的想法对我很重要</b>。无论有无类似项目经验，感兴趣就来找我聊聊。
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="cta">
+      <div class="q">一起做游戏！</div>
+      <div class="contact"><span>联系方式</span>【这里填你的微信 / QQ / 邮箱】</div>
+      <div class="note">毕业设计 · 无报酬但可署名 · 工作量可谈 · 有完整开发文档</div>
+    </div>
+    <div class="qr">二维码<br>占位</div>
+  </div>
+
+</div>
+</body>
+</html>

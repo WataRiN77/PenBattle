@@ -1,0 +1,55 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>二、研究问题与验证方式</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>01 研究课题</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ background: '#0E3F8C', padding: 18, borderRadius: 6 }}>
+            <Text style={{ fontSize: 18, color: '#9DBBE8' }}>主研究问题 RQ</Text>
+            <Text style={{ fontSize: 24, color: '#FFFFFF', fontWeight: 'bold', lineHeight: 1.45 }}>
+                在回合制框架下以实时物理模拟作为战斗结算机制时，如何在保证结果可复现性与联机一致性的前提下，提供足够的策略深度？
+            </Text>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', gap: 16, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>RQ-a 技术</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    小规模联机下，物理状态同步与回合状态机如何衔接，使开销与表现一致性可接受？
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>验证：同步延迟 / 状态一致率自测</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>RQ-b 设计</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    "通用池 + 笔专属池"的随机三选一构筑，在有限内容量下能否提供足够策略多样性？
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>验证：构筑选择分布 / 是否出现唯一最优解</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>RQ-c 方法</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    AI 辅助开发工具在本课题实践中，对开发效率与质量的影响如何量化？
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>验证：开发日志记录耗时与返工次数</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#FFC107', padding: 14, borderRadius: 6 }}>
+            <Text style={{ fontSize: 20, color: '#1A2230', fontWeight: 'bold' }}>
+                研究类型声明：设计实践型研究 —— 采用"原型实现 + 工程自测 + 小样本用户评估"的方法，不设定严格对照实验，结论限定在本原型范围内。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>04 / 19</Text>
+    </Box>
+</Slide>
+
+

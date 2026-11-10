@@ -1,0 +1,61 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>一、论题选择：课题 ≠ 项目</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>01 研究课题</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 18 }}>
+        <Box style={{ flexDirection: 'row', gap: 18, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 22, gap: 10 }}>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>项目 Project</Text>
+                </Box>
+                <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.55 }}>
+                    做一个能玩的回合制实时物理对战原型：<br />
+                    4 人对战、弹弓式发射、被动与构筑系统、联机同步。
+                </Text>
+                <Text style={{ fontSize: 20, color: '#8B97A8', lineHeight: 1.5 }}>
+                    交付物是可运行程序，评判标准是"好不好玩、跑不跑得动"。
+                </Text>
+            </Box>
+
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 22, gap: 10 }}>
+                <Box style={{ background: '#0E3F8C', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#FFFFFF' }}>课题 Research</Text>
+                </Box>
+                <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.55 }}>
+                    以该项目为载体，回答一个可验证的问题：<br />
+                    <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>回合制里用实时物理结算战斗，确定性与策略性能否兼顾？</span>
+                </Text>
+                <Text style={{ fontSize: 20, color: '#8B97A8', lineHeight: 1.5 }}>
+                    交付物是结论与方法，评判标准是"论证是否成立、能否被复现"。
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 18, borderRadius: 6 }}>
+            <Text style={{ fontSize: 22, color: '#FFFFFF', lineHeight: 1.5 }}>
+                核心区分：项目是<span style={{ fontWeight: 'bold' }}>答案</span>，课题是<span style={{ fontWeight: 'bold' }}>问题</span>。
+                本报告以后者为纲，游戏只是验证它的实验装置。
+            </Text>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', gap: 18 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 16 }}>
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>为什么是我做</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230' }}>课桌弹笔的共同记忆 + 已具备 Unity 工程能力</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 16 }}>
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>为什么现在做</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230' }}>物理玩法与构筑玩法均已成熟，但交叉处缺少轻量验证</Text>
+            </Box>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>03 / 19</Text>
+    </Box>
+</Slide>
+
+

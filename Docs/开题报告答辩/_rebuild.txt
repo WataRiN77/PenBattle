@@ -1,0 +1,2 @@
+﻿=== summary ok=19 bad=0 ===
+pptx bytes=77380

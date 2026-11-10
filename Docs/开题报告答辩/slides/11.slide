@@ -1,0 +1,55 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>九、技术探索③：联机一致性与事件驱动架构</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>04 研究内容 · 技术为主</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 16, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>房主权威（Host Authority）</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    由主机承担物理解算与规则判定，客户端上报操作、接收状态，避免多方各自算物理导致分叉。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>技术选型：Unity Netcode for GameObjects + Unity Transport</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>自研事件总线 EventBus</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    玩法逻辑通过发布/订阅解耦：新增被动或状态效果时只需订阅对应事件，不改状态机。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>钩子：回合开始/结束、行动结束、发射、撞击、受伤、淘汰</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>一致性的验证口径</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    固定物理步长；关键参数不依赖浮点累积顺序；以"相同初始条件 + 相同操作序列"统计结果一致率。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【计划中】该指标需在联机模块完成后实测</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#E8EFF8', borderLeft: '6px solid #1E4FA8', padding: 16, borderRadius: 4 }}>
+            <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.5 }}>
+                范围声明：联机部分以<span style={{ fontWeight: 'bold' }}>局域网 2–4 人</span>为验证场景，
+                不追求广域网与大规模同服；若时间允许再扩展，但不作为本课题的必达目标。
+            </Text>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 14, borderRadius: 6 }}>
+            <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>
+                对 RQ 的作用：房主权威 + 回合边界静止，是本原型在"小规模场景"下换取一致性的核心假设，也是后续要实测的部分。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>11 / 19</Text>
+    </Box>
+</Slide>
+
+

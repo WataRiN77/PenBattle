@@ -1,0 +1,170 @@
+﻿PassiveSkillManager:AttachTo (PenController,PenConfig) (at Assets/Scripts/Skills/Passive/PassiveSkillManager.cs:31)
+GameManager:InitializePlayers (System.Collections.Generic.List`1<PlayerSetupData>) (at Assets/Scripts/GameManager.cs:164)
+GameManager:BeginMatch (System.Collections.Generic.List`1<PlayerSetupData>) (at Assets/Scripts/GameManager.cs:110)
+MatchSetupManager:CompleteSetup () (at Assets/Scripts/Setup/MatchSetupManager.cs:131)
+MatchSetupManager:OnConfirm () (at Assets/Scripts/Setup/MatchSetupManager.cs:118)
+MatchSetupManager:OnGUI () (at Assets/Scripts/Setup/MatchSetupManager.cs:89)
+
+(Filename: Assets/Scripts/Skills/Passive/PassiveSkillManager.cs Line: 31)
+
+[寮哄寲] 寮哄寲闃舵寮€濮嬶紙寮€灞€锛夛細2 浜猴紝姣忎汉 1 涓?
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UpgradePhaseManager:StartPhase (System.Collections.Generic.List`1<PlayerData>,int,bool,System.Action) (at Assets/Scripts/Upgrades/UpgradePhaseManager.cs:90)
+GameManager:StartUpgradePhase (bool,System.Action) (at Assets/Scripts/GameManager.cs:612)
+GameManager:BeginMatch (System.Collections.Generic.List`1<PlayerSetupData>) (at Assets/Scripts/GameManager.cs:118)
+MatchSetupManager:CompleteSetup () (at Assets/Scripts/Setup/MatchSetupManager.cs:131)
+MatchSetupManager:OnConfirm () (at Assets/Scripts/Setup/MatchSetupManager.cs:118)
+MatchSetupManager:OnGUI () (at Assets/Scripts/Setup/MatchSetupManager.cs:89)
+
+(Filename: Assets/Scripts/Upgrades/UpgradePhaseManager.cs Line: 90)
+
+[寮哄寲] 鐜╁1锛堝啺闇滅瑪锛夋娊鍒帮細璐ㄩ噺寮哄寲 / 璐ㄩ噺寮哄寲 / 寮规€у己鍖?
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UpgradePhaseManager:RollOptions () (at Assets/Scripts/Upgrades/UpgradePhaseManager.cs:133)
+UpgradePhaseManager:NextPlayer () (at Assets/Scripts/Upgrades/UpgradePhaseManager.cs:105)
+UpgradePhaseManager:StartPhase (System.Collections.Generic.List`1<PlayerData>,int,bool,System.Action) (at Assets/Scripts/Upgrades/UpgradePhaseManager.cs:92)
+GameManager:StartUpgradePhase (bool,System.Action) (at Assets/Scripts/GameManager.cs:612)
+GameManager:BeginMatch (System.Collections.Generic.List`1<PlayerSetupData>) (at Assets/Scripts/GameManager.cs:118)
+MatchSetupManager:CompleteSetup () (at Assets/Scripts/Setup/MatchSetupManager.cs:131)
+MatchSetupManager:OnConfirm () (at Assets/Scripts/Setup/MatchSetupManager.cs:118)
+MatchSetupManager:OnGUI () (at Assets/Scripts/Setup/MatchSetupManager.cs:89)
+
+(Filename: Assets/Scripts/Upgrades/UpgradePhaseManager.cs Line: 133)
+
+Player2 涓?Player1 鍙戠敓纰版挒
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:198)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Pen/PenController.cs Line: 198)
+
+[鍐板喕] 鎼滅储鏍?Pen_Player2锛氬叡 1 涓覆鏌撳櫒 鈫?瑕嗙洊 1 涓?[Circle]锛涜烦杩?[鏃燷锛涘啺鏅舵牸鏁帮細妯悜 4 鏍笺€佹部绗旇韩 7.8 鏍硷紙鏈湴鍗婂緞 0.00005锛宊NoiseScaleOS 37572.7锛?
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FreezeVisual:Build () (at Assets/Scripts/Effects/FreezeVisual.cs:130)
+FreezeVisual:Awake () (at Assets/Scripts/Effects/FreezeVisual.cs:37)
+UnityEngine.GameObject:AddComponent (System.Type)
+UnityEngine.GameObject:AddComponent<FreezeVisual> ()
+FreezeEffect:Freeze (PenController,single,int) (at Assets/Scripts/Status/AllStatus/FreezeEffect.cs:49)
+FreezePassive:OnHitPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/FreezePassive.cs:22)
+PassiveSkill:HandlePenPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/PassiveSkill.cs:98)
+PenBattleGame.Core.EventBus:Publish<PenBattleGame.Core.PenPenCollisionEvent> (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/EventBus/PenBattleEventBus.cs:42)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:187)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Effects/FreezeVisual.cs Line: 130)
+
+鍐板喕鐢熸晥锛歅layer2 鎽╂摝 0.28 鈫?0.28锛埫?锛夛紝鎸佺画 2 鍥炲悎
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FreezeEffect:Freeze (PenController,single,int) (at Assets/Scripts/Status/AllStatus/FreezeEffect.cs:52)
+FreezePassive:OnHitPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/FreezePassive.cs:22)
+PassiveSkill:HandlePenPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/PassiveSkill.cs:98)
+PenBattleGame.Core.EventBus:Publish<PenBattleGame.Core.PenPenCollisionEvent> (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/EventBus/PenBattleEventBus.cs:42)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:187)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Status/AllStatus/FreezeEffect.cs Line: 52)
+
+Player1 鐨刐鍐板喕]鍐讳綇浜?Player2锛氭懇鎿?脳1锛屾寔缁?2 鍥炲悎
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FreezePassive:OnHitPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/FreezePassive.cs:24)
+PassiveSkill:HandlePenPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/PassiveSkill.cs:98)
+PenBattleGame.Core.EventBus:Publish<PenBattleGame.Core.PenPenCollisionEvent> (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/EventBus/PenBattleEventBus.cs:42)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:187)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Skills/Passive/FreezePassive.cs Line: 24)
+
+Player1 鐘舵€佽€愪箙 -5锛屽墿浣?95锛堟潵婧愶細Player2_Thorns锛?
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PenController:ReduceStatusDurability (single,string) (at Assets/Scripts/Pen/PenController.cs:126)
+ThornsPassive:OnHitPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/ThornsPassive.cs:12)
+PassiveSkill:HandlePenPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/PassiveSkill.cs:98)
+PenBattleGame.Core.EventBus:Publish<PenBattleGame.Core.PenPenCollisionEvent> (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/EventBus/PenBattleEventBus.cs:42)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:187)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Pen/PenController.cs Line: 126)
+
+Player2 鐨刐鑽嗘]鍙嶅脊 5 鐐逛激瀹崇粰 Player1
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+ThornsPassive:OnHitPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/ThornsPassive.cs:13)
+PassiveSkill:HandlePenPen (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/Skills/Passive/PassiveSkill.cs:98)
+PenBattleGame.Core.EventBus:Publish<PenBattleGame.Core.PenPenCollisionEvent> (PenBattleGame.Core.PenPenCollisionEvent) (at Assets/Scripts/EventBus/PenBattleEventBus.cs:42)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:187)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Skills/Passive/ThornsPassive.cs Line: 13)
+
+Player1 涓?Player2 鍙戠敓纰版挒
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+PenController:OnCollisionEnter (UnityEngine.Collision) (at Assets/Scripts/Pen/PenController.cs:198)
+UnityEngine.Physics:ReportContacts (Unity.Collections.NativeArray`1/ReadOnly<UnityEngine.ContactPairHeader>)
+UnityEngine.Physics:OnSceneContact (UnityEngine.PhysicsScene,intptr,int)
+
+(Filename: Assets/Scripts/Pen/PenController.cs Line: 198)
+
+Freeze 鏂藉姞鍦?Player2 涓婏紝鎸佺画 2 鍥炲悎
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+StatusEffect:OnApply () (at Assets/Scripts/Status/StatusEffect.cs:34)
+StatusEffect:Start () (at Assets/Scripts/Status/StatusEffect.cs:27)
+
+(Filename: Assets/Scripts/Status/StatusEffect.cs Line: 34)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            1.487 ms
+	Integration:            112.994 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       0.018 ms
+	Total Operation Time:   114.502 ms
+Unloading 134 unused Assets / (0.6 MB). Loaded Objects now: 7596.
+Memory consumption went from 240.7 MB to 240.0 MB.
+Total: 4.955200 ms (FindLiveObjects: 0.334000 ms CreateObjectMapping: 0.121800 ms MarkObjects: 4.265100 ms  DeleteObjects: 0.233800 ms)
+
+[Licensing::Client] Successfully resolved entitlements
+[Licensing::Client] Successfully resolved entitlements
+Asset Pipeline Refresh (id=f60baf2208eedbe44a131d909187c69b): Total: 0.008 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+<RI> Initialized touch support.
+
+Start importing Assets/Scenes/SampleScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(-1,00000000000000000000000000000000)  -> (artifact id: '8eaa10cd4c41a0ea6bdee382a6eea05f') in 0.003869 seconds
+Refreshing native plugins compatible for Editor in 4.19 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=449f220b11104b04a8c767a03e084251): Total: 0.043 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=acbd73ff0a7df514497990d76fbb9869): Total: 0.005 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Asset Pipeline Refresh (id=5c2597ab932dfe64da3007455554d7db): Total: 0.004 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)

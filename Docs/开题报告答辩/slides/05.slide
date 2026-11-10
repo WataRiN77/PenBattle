@@ -1,0 +1,52 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>三、研究背景①：物理驱动玩法的兴起</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>02 背景与意义</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 16, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>Rocket League</Text>
+                <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.5 }}>
+                    把"载具物理"直接作为竞技核心：车辆的碰撞、弹跳、旋转都由刚体模拟决定。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【待查数据】销量 / 峰值同时在线，注明来源与年份</Text>
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>启示：物理可以不是表现层，而是玩法本体</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>Human Fall Flat</Text>
+                <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.5 }}>
+                    软体角色物理带来大量"计划之外的解法"，玩家自发创造通关方式。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【待查数据】销量 / 用户生成内容规模，注明来源</Text>
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>启示：涌现式玩法（emergent gameplay）的重玩价值</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>Gang Beasts</Text>
+                <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.5 }}>
+                    低精度物理 + 夸张碰撞，把"不可预测"本身变成了喜剧与派对体验。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【待查数据】销量 / 玩法评价，注明来源</Text>
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>启示：物理误差可以转化为体验特色</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#E8EFF8', borderLeft: '6px solid #1E4FA8', padding: 16, borderRadius: 4 }}>
+            <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.5 }}>
+                共同点：它们把<span style={{ fontWeight: 'bold' }}>物理模拟结果</span>作为玩法反馈的来源，而非预先编排的动画。
+                这带来高重玩性，但也带来<span style={{ color: '#D9534F' }}>确定性与公平性</span>的新问题 —— 这正是本课题的切入点。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>05 / 19</Text>
+    </Box>
+</Slide>
+
+

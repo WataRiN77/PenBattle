@@ -1,0 +1,50 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>四、研究背景②：派对 / 合作类游戏的现象级案例</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>02 背景与意义</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 18, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 20, gap: 10 }}>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>Overcooked 分手厨房</Text>
+                </Box>
+                <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.55 }}>
+                    强协作、短关卡、高频失误与即时反馈。玩家在混乱中协调分工，
+                    单局时长被压缩到几分钟，天然适合反复重开。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【待查数据】销量 / 获奖记录（如 BAFTA、TGA 提名），注明来源</Text>
+                <Text style={{ fontSize: 19, color: '#1E4FA8', fontWeight: 'bold' }}>可借鉴：短局循环 + 明确的失败反馈</Text>
+            </Box>
+
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 20, gap: 10 }}>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>It Takes Two 双人成行</Text>
+                </Box>
+                <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.55 }}>
+                    强制双人合作，每章节更换一套机制；用玩法本身承载叙事与关系主题，
+                    证明了"合作玩法"可以支撑完整的商业作品。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【待查数据】TGA 年度游戏年份 / 销量，注明来源</Text>
+                <Text style={{ fontSize: 19, color: '#1E4FA8', fontWeight: 'bold' }}>可借鉴：机制即内容，用小体量换高变化</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 16, borderRadius: 6 }}>
+            <Text style={{ fontSize: 21, color: '#FFFFFF', lineHeight: 1.5 }}>
+                对本原型的定位启发：做<span style={{ fontWeight: 'bold' }}>短局、强反馈、可反复重开</span>的轻量对战 ——
+                不追求叙事体量，而把深度放在"每一局都不一样的物理过程与构筑选择"上。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>06 / 19</Text>
+    </Box>
+</Slide>
+
+

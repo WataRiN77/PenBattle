@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PenBattle 招募系列图</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+  :root{
+    --paper:#fffdf7;
+    --ink:#1b1b1f;
+    --ink2:#3d3d47;
+    --gray:#7c7c8a;
+    --orange:#ff5b2e;
+    --orange-d:#e8451a;
+    --red:#f03b3b;
+    --cyan:#2ec4d6;
+    --cyan-d:#12a3b5;
+    --blue:#3b7cf6;
+    --yellow:#ffc61a;
+    --purple:#9b5de5;
+    --green:#37c46a;
+    --pink:#ff5c9e;
+    --line:#e8e3d8;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#8b8b95;
+    font-family:"Noto Sans SC",system-ui,sans-serif;
+    padding:30px 0;
+    display:flex;flex-direction:column;align-items:center;gap:34px;
+  }
+
+  /* ===== 单张画布 3:4 ===== */
+  .slide{
+    width:750px;height:1000px;
+    background:var(--paper);
+    position:relative;
+    overflow:hidden;
+    color:var(--ink);
+    flex-shrink:0;
+    /* 纸张纹理 */
+    background-image:
+      radial-gradient(circle at 20% 30%,rgba(0,0,0,.012) 0,transparent 50%),
+      radial-gradient(circle at 80% 70%,rgba(0,0,0,.012) 0,transparent 50%);
+  }
+  /* 角落涂鸦点阵 */
+  .slide::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(27,27,31,.055) 1.5px,transparent 1.5px);
+    background-size:23px 23px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:0;}
+
+  /* ===== 编号徽章 ===== */
+  .chapter{
+    position:absolute;top:26px;left:30px;
+    z-index:9;
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--ink);
+    color:#fff;
+    font-size:15px;font-weight:900;
+    padding:8px 18px 8px 13px;
+    border-radius:100px;
+    letter-spacing:.04em;
+    transform:rotate(-3deg);
+    box-shadow:0 4px 0 rgba(0,0,0,.2);
+  }
+  .chapter .n{color:var(--yellow);}
+
+  /* ===== 大标题区 ===== */
+  .head{
+    position:relative;
+    padding:76px 34px 0;
+    text-align:center;
+    flex-shrink:0;
+  }
+  .big{
+    font-size:76px;font-weight:900;
+    line-height:1.06;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    position:relative;
+    z-index:2;
+  }
+  /* 橙色高亮块（描边+旋转） */
+  .hl-block{
+    display:inline-block;
+    position:relative;
+    padding:2px 14px 6px;
+    color:#fff;
+    z-index:1;
+  }
+  .hl-block::before{
+    content:"";
+    position:absolute;inset:0;
+    background:var(--orange);
+    border:4px solid var(--ink);
+    border-radius:14px;
+    transform:rotate(-2deg);
+    z-index:-1;
+    box-shadow:0 6px 0 rgba(27,27,31,.85);
+  }
+
+  /* 手写批注 */
+  .note{
+    position:absolute;
+    font-size:15px;font-weight:700;
+    line-height:1.35;
+    color:var(--ink2);
+    z-index:5;
+  }
+  .note .wave{
+    display:block;width:76px;height:16px;
+    margin-top:5px;
+  }
+  .note.right{right:26px;top:150px;text-align:left;transform:rotate(4deg);}
+
+  /* 青蓝色副标题条 */
+  .subbar{
+    display:inline-block;
+    background:var(--cyan);
+    border:4px solid var(--ink);
+    border-radius:12px;
+    padding:11px 24px;
+    font-size:21px;font-weight:900;
+    color:#fff;
+    letter-spacing:.02em;
+    transform:rotate(-1deg);
+    box-shadow:0 5px 0 rgba(27,27,31,.8);
+    margin-top:20px;
+    position:relative;z-index:3;
+  }
+  .subbar.tilt-r{transform:rotate(1deg);}
+  .subbar em{color:var(--yellow);font-style:normal;}
+
+  /* ===== 正文区 ===== */
+  .main{flex:1;padding:0 34px;display:flex;flex-direction:column;min-height:0;position:relative;}
+
+  /* 章节小标（黑胶囊+黄色斜线） */
+  .sec{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--ink);
+    color:#fff;
+    font-size:19px;font-weight:900;
+    padding:9px 22px 9px 17px;
+    border-radius:100px;
+    align-self:flex-start;
+    position:relative;
+    transform:rotate(-1.5deg);
+    box-shadow:0 4px 0 rgba(27,27,31,.22);
+    margin:0 0 13px;
+    flex-shrink:0;
+  }
+  .sec.red{background:var(--red);}
+  .sec.blue{background:var(--blue);}
+  .sec.purple{background:var(--purple);}
+  .sec.green{background:var(--green);}
+  .sec::after{
+    content:"";position:absolute;right:-19px;top:50%;
+    width:13px;height:13px;
+    border-top:4px solid var(--yellow);
+    border-right:4px solid var(--yellow);
+    transform:translateY(-50%) rotate(14deg);
+  }
+
+  /* 圆角信息卡列表 */
+  .list{display:flex;flex-direction:column;gap:10px;}
+  .item{
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:15px;
+    padding:13px 17px;
+    display:flex;align-items:center;gap:14px;
+    box-shadow:0 4px 0 rgba(27,27,31,.16);
+    font-size:15.5px;font-weight:700;
+    color:var(--ink2);
+    line-height:1.45;
+  }
+  .item b{color:var(--ink);font-weight:900;}
+  .ico{
+    width:34px;height:34px;flex-shrink:0;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;
+    border:3px solid var(--ink);
+  }
+  .ico.o{background:var(--orange);}
+  .ico.y{background:var(--yellow);}
+  .ico.c{background:var(--cyan);}
+  .ico.b{background:var(--blue);}
+  .ico.p{background:var(--purple);}
+  .ico.g{background:var(--green);}
+  .ico.r{background:var(--red);}
+  .ico.k{background:var(--ink);}
+
+  /* 两列小标签 */
+  .chips{display:flex;flex-wrap:wrap;gap:9px;}
+  .chip{
+    border:3px solid var(--ink);
+    border-radius:100px;
+    padding:9px 18px;
+    font-size:15px;font-weight:900;
+    background:#fff;
+    box-shadow:0 3px 0 rgba(27,27,31,.16);
+  }
+  .chip.o{background:var(--orange);color:#fff;}
+  .chip.c{background:var(--cyan);color:#fff;}
+  .chip.y{background:var(--yellow);}
+  .chip.r{background:var(--red);color:#fff;}
+  .chip.p{background:var(--purple);color:#fff;}
+  .chip.g{background:var(--green);color:#fff;}
+  .chip.b{background:var(--blue);color:#fff;}
+
+  /* 底部 CTA 胶囊 —— 绝对定位固定在画布底部 */
+  .cta-wrap{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    padding:0 34px 30px;
+    z-index:6;
+    flex-shrink:0;
+    background:linear-gradient(180deg,transparent 0%,var(--paper) 34%);
+    padding-top:26px;
+  }
+  .cta{
+    display:flex;align-items:center;justify-content:center;gap:13px;
+    background:var(--orange);
+    border:4px solid var(--ink);
+    border-radius:100px;
+    padding:16px 26px;
+    color:#fff;
+    font-size:26px;font-weight:900;
+    letter-spacing:.02em;
+    box-shadow:0 6px 0 rgba(27,27,31,.85);
+    transform:rotate(-.6deg);
+  }
+  .cta .mail{
+    width:34px;height:26px;
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:6px;
+    position:relative;
+    flex-shrink:0;
+  }
+  .cta .mail::after{
+    content:"";
+    position:absolute;left:50%;top:50%;
+    width:15px;height:15px;
+    border-right:3px solid var(--orange);
+    border-bottom:3px solid var(--orange);
+    transform:translate(-50%,-70%) rotate(45deg);
+  }
+  .cta-sub{
+    text-align:center;
+    font-size:15px;font-weight:700;
+    color:var(--gray);
+    margin-top:14px;
+  }
+  .cta-sub b{color:var(--ink);}
+
+  /* 装饰涂鸦 */
+  .doodle{position:absolute;z-index:1;pointer-events:none;}
+  .star{color:var(--yellow);}
+
+  /* 主视觉图（右下堆叠） */
+  .hero-cut{
+    position:absolute;
+    right:-40px;bottom:-90px;
+    width:430px;height:430px;
+    border-radius:50%;
+    overflow:hidden;
+    z-index:1;
+    border:0;
+    opacity:.95;
+  }
+  .hero-cut img{width:100%;height:100%;object-fit:cover;}
+  /* 斜切照片卡 */
+  .photo-card{
+    position:absolute;
+    border:5px solid #fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(27,27,31,.28);
+    z-index:1;
+  }
+  .photo-card img{width:100%;height:100%;object-fit:cover;display:block;transform:rotate(-3deg) scale(1.1);}
+
+  /* 状态小方卡（图2 核心体验用） */
+  .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .exp{
+    border:3px solid var(--ink);
+    border-radius:14px;
+    padding:11px 8px 10px;
+    text-align:center;
+    background:#fff;
+    box-shadow:0 4px 0 rgba(27,27,31,.16);
+  }
+  .exp .em{font-size:24px;line-height:1;margin-bottom:6px;display:block;}
+  .exp .t{font-size:13.5px;font-weight:900;color:var(--ink2);}
+  .exp:nth-child(1){background:#fff5e8;}
+  .exp:nth-child(2){background:#e9f8fb;}
+  .exp:nth-child(3){background:#f1ecfd;}
+  .exp:nth-child(4){background:#eafaf0;}
+  .exp:nth-child(5){background:#fff0f6;}
+  .exp:nth-child(6){background:#fffbe6;}
+
+  /* 图5 项目条目 */
+  .proj{
+    border:3px solid var(--ink);
+    border-radius:16px;
+    background:#fff;
+    padding:14px 16px;
+    box-shadow:0 4px 0 rgba(27,27,31,.16);
+    display:flex;gap:14px;align-items:center;
+  }
+  .proj .thumb{
+    width:112px;height:74px;flex-shrink:0;
+    border-radius:11px;
+    border:3px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:900;color:#fff;
+    text-align:center;line-height:1.25;
+    padding:4px;
+    letter-spacing:.02em;
+  }
+  .proj .meta h4{font-size:17px;font-weight:900;margin-bottom:6px;}
+  .proj .meta p{font-size:13px;font-weight:700;color:var(--gray);line-height:1.65;}
+  .proj .meta p span{color:var(--orange);font-weight:900;}
+
+  /* 参考作品（带封面图） */
+  .ref-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+  }
+  .ref{
+    border:3px solid var(--ink);
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 4px 0 rgba(27,27,31,.16);
+  }
+  .ref-img{
+    width:100%;
+    aspect-ratio:460/215;
+    overflow:hidden;
+    background:#ddd;
+    border-bottom:3px solid var(--ink);
+  }
+  .ref-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .ref-name{
+    font-size:12px;font-weight:900;
+    text-align:center;
+    padding:5px 4px;
+    color:var(--ink2);
+    letter-spacing:.01em;
+  }
+
+  .placeholder{
+    border:3px dashed #c9c3b6;
+    border-radius:16px;
+    padding:16px;
+    text-align:center;
+    font-size:14px;font-weight:700;
+    color:#a8a294;
+    background:rgba(255,255,255,.6);
+  }
+
+  /* 图1 游戏名大标题行 */
+  .title-row{
+    display:flex;align-items:center;gap:14px;
+    background:var(--ink);
+    border:4px solid var(--ink);
+    border-radius:18px;
+    padding:16px 20px;
+    margin-bottom:14px;
+    box-shadow:0 6px 0 rgba(27,27,31,.9);
+    position:relative;
+    overflow:hidden;
+  }
+  .title-row::before{
+    content:"";
+    position:absolute;right:-30px;top:-30px;
+    width:120px;height:120px;border-radius:50%;
+    background:rgba(255,91,46,.22);
+  }
+  .title-dice{
+    font-size:34px;line-height:1;
+    flex-shrink:0;
+    position:relative;z-index:1;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
+  }
+  .title-game{
+    font-size:40px;font-weight:900;
+    letter-spacing:.01em;
+    line-height:1.1;
+    color:var(--yellow);
+    position:relative;z-index:1;
+    text-shadow:0 3px 0 rgba(0,0,0,.35);
+  }
+  .title-genre{
+    font-size:14px;font-weight:900;
+    color:#fff;
+    background:var(--orange);
+    border:3px solid #fff;
+    border-radius:100px;
+    padding:6px 14px;
+    margin-left:auto;
+    flex-shrink:0;
+    position:relative;z-index:1;
+    transform:rotate(-2deg);
+    box-shadow:0 3px 0 rgba(0,0,0,.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 图 1 封面 ==================== -->
+<div class="slide" data-name="01-cover">
+  <div class="chapter"><span class="n">01</span> / 招募</div>
+  <div class="content">
+    <div class="head">
+      <div class="big">
+        独立游戏<br>
+        <span class="hl-block">招募</span>
+      </div>
+      <div class="note right">
+        一起做<br>好玩的游戏吧！
+        <svg class="wave" viewBox="0 0 76 16" fill="none">
+          <path d="M2 10 Q10 2 18 10 T34 10 T50 10 T66 10" stroke="#3d3d47" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="subbar">寻找 <em>3D美术 / 平面美术 / 音效</em> 合作者</div>
+    </div>
+
+    <div class="main" style="padding-top:20px;padding-bottom:96px;">
+      <div class="title-row">
+        <span class="title-dice">🎲</span>
+        <span class="title-game">《弹笔大战》</span>
+        <span class="title-genre">多人派对游戏</span>
+      </div>
+      <div class="list" style="margin-bottom:16px;">
+        <div class="item"><span class="ico c">⚙</span><span>Unity 开发 · 3D 实时物理模拟</span></div>
+        <div class="item"><span class="ico g">▶</span><span>核心系统已跑通，进入内容填充阶段</span></div>
+        <div class="item"><span class="ico b">📅</span><span>预计 <b>2027 年上半年</b> 完成</span></div>
+        <div class="item"><span class="ico p">🎓</span><span>毕业设计项目 · 可署名 · 可写进作品集</span></div>
+      </div>
+    </div>
+
+    <div class="photo-card" style="right:44px;bottom:118px;width:290px;height:200px;transform:rotate(3.5deg);">
+      <img src="hero-clash.png" alt="">
+    </div>
+
+    <div class="cta-wrap">
+      <div class="cta"><span class="mail"></span>欢迎私信交流</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 图 2 游戏介绍 ==================== -->
+<div class="slide" data-name="02-intro">
+  <div class="chapter"><span class="n">02</span> / 游戏介绍</div>
+  <div class="content">
+    <div class="head" style="padding-top:60px;">
+      <div class="big" style="font-size:58px;">这是个什么游戏？</div>
+      <div class="subbar tilt-r" style="font-size:18px;margin-top:14px;">课桌上的 <em>物理对战 + 随机强化</em> 派对游戏</div>
+    </div>
+
+    <div class="main" style="padding-top:14px;gap:11px;padding-bottom:88px;">
+      <div>
+        <div class="sec red">核心玩法</div>
+        <div class="list" style="gap:8px;">
+          <div class="item" style="padding:10px 16px;"><span class="ico o" style="width:30px;height:30px;font-size:15px;">🎯</span><span>弹弓式蓄力，把对手的笔<b>弹出桌面</b>或直接<b>击碎</b></span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico p" style="width:30px;height:30px;font-size:15px;">🃏</span><span>每回合<b>败者选择强化</b>，自由组合流派</span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico c" style="width:30px;height:30px;font-size:15px;">🔄</span><span>回合制推进，<b>先积 3 分</b>者获胜</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec blue">核心体验</div>
+        <div class="exp-grid">
+          <div class="exp"><span class="em">💥</span><span class="t">实时物理</span></div>
+          <div class="exp"><span class="em">🎮</span><span class="t">多人联机</span></div>
+          <div class="exp"><span class="em">🃏</span><span class="t">构筑流派</span></div>
+          <div class="exp"><span class="em">🤝</span><span class="t">欢乐派对</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec green">目前进度</div>
+        <div class="list" style="gap:7px;">
+          <div class="item" style="padding:9px 16px;"><span class="ico g" style="width:28px;height:28px;font-size:14px;">✓</span><span>回合状态机 / 物理对战 / 联机同步 <b>全部跑通</b></span></div>
+          <div class="item" style="padding:9px 16px;"><span class="ico g" style="width:28px;height:28px;font-size:14px;">✓</span><span>技能 / 被动 / 强化 / 地图 <b>已实现</b>，正补充美术与 UI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <div class="cta"><span class="mail"></span>欢迎私信了解项目</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 图 3 美术招募 ==================== -->
+<div class="slide" data-name="03-art">
+  <div class="chapter"><span class="n">03</span> / 美术招募</div>
+  <div class="content">
+    <div class="head">
+      <div class="big">
+        想找什么样的<br>
+        <span class="hl-block">美术？</span>
+      </div>
+      <div class="note right" style="top:158px;">
+        希望一起确定<br>这个游戏到底<br>应该长什么样。
+        <svg class="wave" viewBox="0 0 76 16" fill="none">
+          <path d="M2 10 Q10 2 18 10 T34 10 T50 10 T66 10" stroke="#3d3d47" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="main" style="padding-top:22px;gap:15px;padding-bottom:112px;">
+      <div>
+        <div class="sec">我需要你做什么</div>
+        <div class="list">
+          <div class="item"><span class="ico o">🧊</span><span><b>3D 建模</b>　各种"笔"、桌面场景、可破坏障碍物</span></div>
+          <div class="item"><span class="ico p">🎨</span><span><b>平面美术</b>　卡牌插画、流派图标、UI 元素</span></div>
+          <div class="item"><span class="ico c">✨</span><span><b>特效动效</b>　撞击火花、燃烧、冰冻、击飞轨迹</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec purple">风格方向</div>
+        <div class="chips">
+          <span class="chip o">卡通低模</span>
+          <span class="chip c">高饱和</span>
+          <span class="chip y">高辨识度</span>
+          <span class="chip p">派对游戏感</span>
+          <span class="chip g">轻松欢乐</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec green">我更看重的是</div>
+        <div class="chips">
+          <span class="chip r">审美</span>
+          <span class="chip b">整体性</span>
+          <span class="chip o">沟通</span>
+          <span class="chip g">愿意一起打磨</span>
+        </div>
+      </div>
+
+      <div class="placeholder">
+        建模 / 场景 / 卡面 / UI 方向都欢迎 · 软件不限（Blender / Maya / C4D …）
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <div class="cta"><span class="mail"></span>你的想法对我很重要</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 图 4 音效招募 ==================== -->
+<div class="slide" data-name="04-audio">
+  <div class="chapter"><span class="n">04</span> / 音乐音效招募</div>
+  <div class="content">
+    <div class="head" style="padding-top:58px;">
+      <div class="big" style="font-size:64px;">想找什么样的<br><span class="hl-block" style="font-size:64px;">音乐 / 音效？</span></div>
+      <div class="subbar" style="font-size:16px;margin-top:12px;">希望一起找到最适合项目的声音气质</div>
+    </div>
+
+    <div class="main" style="padding-top:16px;gap:12px;padding-bottom:112px;">
+      <div>
+        <div class="sec red">主要内容</div>
+        <div class="list" style="gap:8px;">
+          <div class="item" style="padding:10px 16px;"><span class="ico o" style="width:30px;height:30px;font-size:15px;">🎵</span><span>游戏 BGM　·　输赢反馈音效</span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico c" style="width:30px;height:30px;font-size:15px;">🔊</span><span>撞击 / 燃烧 / 冰冻 等<b>情境音效</b></span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico p" style="width:30px;height:30px;font-size:15px;">🖱️</span><span>UI 交互反馈音</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec purple">风格方向</div>
+        <div class="chips">
+          <span class="chip c">卡通电子</span>
+          <span class="chip y">欢乐</span>
+          <span class="chip p">有律动感</span>
+          <span class="chip o">略带夸张与荒诞</span>
+          <span class="chip g">派对游戏感</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec green">可参考作品</div>
+        <div class="ref-grid">
+          <div class="ref">
+            <div class="ref-img"><img src="refs/ref-trickytowers.jpg" alt=""></div>
+            <div class="ref-name">Tricky Towers</div>
+          </div>
+          <div class="ref">
+            <div class="ref-img"><img src="refs/ref-slaythespire.jpg" alt=""></div>
+            <div class="ref-name">Slay the Spire</div>
+          </div>
+          <div class="ref">
+            <div class="ref-img"><img src="refs/ref-ittakestwo.jpg" alt=""></div>
+            <div class="ref-name">It Takes Two</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <div class="cta"><span class="mail"></span>欢迎带作品或 Demo 私信交流</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 图 5 关于我 ==================== -->
+<div class="slide" data-name="05-about">
+  <div class="chapter"><span class="n">05</span> / 关于我</div>
+  <div class="content">
+    <div class="head">
+      <div class="big">
+        <span class="hl-block" style="font-size:76px;">关于我</span>
+      </div>
+      <div class="subbar" style="font-size:17px;">主要负责 <em>策划 / 程序 / 玩法设计 / 数值设计</em></div>
+    </div>
+
+    <div class="main" style="padding-top:22px;gap:14px;padding-bottom:112px;">
+      <div>
+        <div class="sec">过往项目</div>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <div class="placeholder" style="padding:22px;">
+            这里放你的<b>过往项目</b>：项目名 · 你的职责 · 成绩 / 奖项
+          </div>
+          <div class="placeholder" style="padding:22px;">
+            第二段项目经历（可选）
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec blue">其他参与项目</div>
+        <div class="placeholder" style="padding:18px;">
+          这里放一排其他项目的缩略图 + 名称
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap" style="padding-top:16px;">
+      <div class="cta"><span class="mail"></span>欢迎双向选择</div>
+      <div class="cta-sub">帖子或私信里会附上过往作品截图</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 图 6 合作方式 ==================== -->
+<div class="slide" data-name="06-coop">
+  <div class="chapter"><span class="n">06</span> / 合作方式</div>
+  <div class="content">
+    <div class="head">
+      <div class="big">
+        你能从这个项目里<br>
+        <span class="hl-block" style="font-size:64px;">获得什么？</span>
+      </div>
+      <div class="note right" style="top:158px;">
+        一起做<br>好玩的游戏吧！
+        <svg class="wave" viewBox="0 0 76 16" fill="none">
+          <path d="M2 10 Q10 2 18 10 T34 10 T50 10 T66 10" stroke="#3d3d47" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="main" style="padding-top:20px;gap:14px;padding-bottom:96px;">
+      <div>
+        <div class="sec yellow" style="background:var(--yellow);color:var(--ink);">你能获得</div>
+        <div class="list" style="gap:9px;">
+          <div class="item" style="padding:10px 16px;"><span class="ico p" style="width:30px;height:30px;font-size:15px;">🎮</span><span>一款<b>完整制作并公开发布</b>的 3D 多人游戏项目经历</span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico b" style="width:30px;height:30px;font-size:15px;">📈</span><span>从方向讨论到最终落地的<b>完整开发流程</b>经验</span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico c" style="width:30px;height:30px;font-size:15px;">📁</span><span>可以写进<b>作品集</b>的实际游戏内容与案例</span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico g" style="width:30px;height:30px;font-size:15px;">✍️</span><span><b>正式项目署名</b> · 参加比赛展示时<b>共同署名</b></span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec blue">合作方式</div>
+        <div class="list" style="gap:9px;">
+          <div class="item" style="padding:10px 16px;"><span class="ico c" style="width:30px;height:30px;font-size:15px;">🌐</span><span><b>可接受远程</b>协作，平均每周投入 <b>4~5 小时</b>即可</span></div>
+          <div class="item" style="padding:10px 16px;"><span class="ico o" style="width:30px;height:30px;font-size:15px;">🤝</span><span>希望找到愿意持续沟通、<b>一起把项目做完</b>的人</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <div class="cta"><span class="mail"></span>欢迎私信交流</div>
+      <div class="cta-sub">也很感谢转发给可能感兴趣的朋友</div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+  // ?only=N  → 只显示第 N 张（用于逐张导出图片）
+  (function(){
+    var m = location.search.match(/only=(\d+)/);
+    if (!m) return;
+    var idx = parseInt(m[1], 10);
+    var slides = document.querySelectorAll('.slide');
+    for (var i = 0; i < slides.length; i++) {
+      if (i !== idx - 1) slides[i].style.display = 'none';
+    }
+    document.body.style.padding = '0';
+    document.body.style.gap = '0';
+    if (slides[idx-1]) slides[idx-1].style.boxShadow = 'none';
+  })();
+</script>
+</html>

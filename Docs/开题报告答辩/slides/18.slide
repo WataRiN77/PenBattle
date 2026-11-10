@@ -1,0 +1,42 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 120, background: '#1E4FA8', justifyContent: 'center', paddingLeft: 60 }}>
+        <Text style={{ fontSize: 32, fontWeight: 'bold', color: '#FFFFFF' }}>感谢各位老师的指导</Text>
+        <Text style={{ fontSize: 18, color: '#9DBBE8', marginTop: 6 }}>敬请批评指正</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 600, paddingLeft: 60, paddingRight: 60, paddingTop: 44, paddingBottom: 44, gap: 18 }}>
+        <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>本课题小结</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.55 }}>
+            课题不是"做一个回合制物理对战原型"，而是回答：<span style={{ fontWeight: 'bold' }}>
+            回合制里用实时物理结算，确定性与策略性能否兼顾</span>。
+            游戏是验证它的实验装置，原型完成度与评估数据共同构成结论。
+        </Text>
+
+        <Box style={{ flexDirection: 'row', gap: 16, marginTop: 10 }}>
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 6, padding: 16, gap: 6 }}>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1E4FA8' }}>已实现</Text>
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>
+                    核心玩法、5 支笔、被动与状态效果、开局 / 败者强化构筑
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 6, padding: 16, gap: 6 }}>
+                <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1E4FA8' }}>待完成</Text>
+                <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>
+                    联机同步与一致性实测、玩家测试、UI 与表现打磨
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#0E3F8C', padding: 16, borderRadius: 6, marginTop: 6 }}>
+            <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>
+                【占位填写】补充指导教师与答辩组信息；补充需要现场说明的内容
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>19 / 19</Text>
+    </Box>
+</Slide>
+

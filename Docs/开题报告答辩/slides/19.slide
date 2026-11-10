@@ -1,0 +1,49 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>十六、参考文献</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>07 参考文献</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 14 }}>
+        <Box style={{ flexDirection: 'row', gap: 28 }}>
+            <Box style={{ flex: 1, gap: 10 }}>
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5 }}>[1] FIEDLER G. Networked Physics[EB/OL]. (2015–2019)[引用日期 2026-XX-XX]. https://gafferongames.com/</Text>
+                <Text style={{ fontSize: 17, color: '#D9534F' }}>【占位】核对确切年份、篇数与栏目名</Text>
+
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5, marginTop: 6 }}>[2] Blizzard Entertainment. Overwatch 回放系统与网络同步[C]// GDC. 2017.</Text>
+                <Text style={{ fontSize: 17, color: '#D9534F' }}>【占位】核对演讲人、年份与标题</Text>
+
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5, marginTop: 6 }}>[3] Psyonix. Rocket League[CP]. 2015.</Text>
+                <Text style={{ fontSize: 17, color: '#D9534F' }}>【待查】累计销量 / 峰值同时在线，注明来源（Steam / VGChartz）</Text>
+
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5, marginTop: 6 }}>[4] Ghost Town Games. Overcooked[CP]. 2016.</Text>
+                <Text style={{ fontSize: 17, color: '#D9534F' }}>【待查】销量与奖项，注明来源</Text>
+            </Box>
+
+            <Box style={{ flex: 1, gap: 10 }}>
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5 }}>[5] Hazelight Studios. It Takes Two[CP]. 2021. 获 TGA 2021 年度游戏.</Text>
+                <Text style={{ fontSize: 17, color: '#4A5568' }}>（奖项为公开记录，可检索）</Text>
+
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5, marginTop: 6 }}>[6] MegaCrit. Slay the Spire[CP]. 2019.</Text>
+                <Text style={{ fontSize: 17, color: '#D9534F' }}>【待查】销量，注明来源</Text>
+
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5, marginTop: 6 }}>[7] GGPO. Rollback Netcode[EB/OL]. 【占位】官方文档链接</Text>
+
+                <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5, marginTop: 6 }}>[8] 【占位填写】1–2 篇 AI 辅助软件工程的可检索文献</Text>
+                <Text style={{ fontSize: 17, color: '#D9534F' }}>须为真实可检索文献（实证 / 综述类均可）</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#FFC107', padding: 14, borderRadius: 6 }}>
+            <Text style={{ fontSize: 19, color: '#1A2230', fontWeight: 'bold' }}>
+                格式说明：以上按 GB/T 7714 风格占位；若学校要求 APA 或本校模板，请统一替换。销量 / 在线数务必标注可查来源，不确定时写"约"或删去具体数字。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>18 / 19</Text>
+    </Box>
+</Slide>
+

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc4348c1f651974fbe9f9ddf4ab354d, type: 3}
+  m_Name: MapConfig_3
+  m_EditorClassIdentifier: 
+  mapId: map_03
+  displayName: "\u6807\u51C6\u8BFE\u684C C"
+  mapPrefab: {fileID: 8359128734090562859, guid: d4745f8f2abb0404ead94937d4336b5d,
+    type: 3}
+  weight: 1

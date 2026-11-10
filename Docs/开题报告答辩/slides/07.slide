@@ -1,0 +1,49 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>五、研究背景③：构筑玩法与策略深度</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>02 背景与意义</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 18, flex: 1 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 20, gap: 10 }}>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>Slay the Spire 杀戮尖塔</Text>
+                </Box>
+                <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.55 }}>
+                    确立了 Roguelike + 卡牌构筑范式：每轮从有限选项中做取舍，
+                    逐步累积成一套"这一局独有"的能力组合。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#D9534F' }}>【待查数据】销量 / 品类开创性评价，注明来源</Text>
+            </Box>
+
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 20, gap: 10 }}>
+                <Box style={{ background: '#E8EFF8', paddingLeft: 14, paddingRight: 14, paddingTop: 8, paddingBottom: 8, borderRadius: 4 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>为什么"随机三选一"有效</Text>
+                </Box>
+                <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.55 }}>
+                    完全随机 → 无策略；完全自选 → 最优解固化。
+                    三选一在两者之间：玩家<span style={{ fontWeight: 'bold' }}>被迫在有限选项中做取舍</span>，
+                    每一局的构筑路径因此分叉。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>这是本原型强化系统设计所依据的核心机制假设</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#E8EFF8', borderLeft: '6px solid #1E4FA8', padding: 16, borderRadius: 4 }}>
+            <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.5 }}>
+                本原型的做法：<span style={{ fontWeight: 'bold' }}>通用强化池 + 每支笔的专属强化池</span>合并后随机抽取 3 项供选。
+                专属池让"选笔"与"构筑"相互耦合 —— 同一套通用强化，在不同笔上会长出不同结果。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>07 / 19</Text>
+    </Box>
+</Slide>
+
+

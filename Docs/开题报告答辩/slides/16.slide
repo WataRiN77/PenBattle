@@ -1,0 +1,69 @@
+﻿<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+    <Box style={{ width: '100%', height: 72, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+        <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFFFFF' }}>十四、预期成果与评估方法</Text>
+        <Text style={{ fontSize: 16, color: '#B9CEF0' }}>05 创新与成果</Text>
+    </Box>
+
+    <Box style={{ width: '100%', height: 588, background: '#F7F9FC', padding: 28, gap: 16 }}>
+        <Box style={{ flexDirection: 'row', gap: 16 }}>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>成果一 · 可玩原型</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    完整单局循环 + 4 人对战：5 支笔、被动系统、状态效果、开局强化（败者强化进行中）。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>体量声明：小型可玩原型，非完整商业产品</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>成果二 · 技术文档</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    架构说明、时序与状态机设计、物理参数对照、着色器实现记录。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>便于复现与后续维护</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 8 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>成果三 · 测试报告</Text>
+                <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+                    工程自测数据 + 小样本玩家反馈 + 开发过程记录三部分。
+                </Text>
+                <Box style={{ height: 1, background: '#E5E7EB' }} />
+                <Text style={{ fontSize: 18, color: '#8B97A8' }}>对应三个子问题的验证</Text>
+            </Box>
+        </Box>
+
+        <Box style={{ background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, padding: 18, gap: 10, flex: 1 }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>怎么证明"行之有效"</Text>
+            <Box style={{ flexDirection: 'row', gap: 14 }}>
+                <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 4, padding: 14 }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1E4FA8' }}>工程自测</Text>
+                    <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>
+                        相同初始条件下的结果一致率、同步延迟、运行帧率
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 4, padding: 14 }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1E4FA8' }}>玩家反馈</Text>
+                    <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>
+                        小样本问卷（乐趣、策略深度、公平感、手感），五点量表
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 4, padding: 14 }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1E4FA8' }}>对局数据</Text>
+                    <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.5 }}>
+                        单局时长、构筑选择分布，检验是否出现唯一最优解
+                    </Text>
+                </Box>
+            </Box>
+            <Text style={{ fontSize: 19, color: '#D9534F', fontWeight: 'bold' }}>
+                口径限定：小样本、局域网、原型级 —— 结论只声称"在该原型范围内可行"，不推广到一般情形。
+            </Text>
+        </Box>
+    </Box>
+
+    <Box style={{ width: '100%', height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40, borderTop: '1px solid #E5E7EB' }}>
+        <Text style={{ fontSize: 14, color: '#8B97A8' }}>毕业设计开题报告</Text>
+        <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>16 / 19</Text>
+    </Box>
+</Slide>
+
+
