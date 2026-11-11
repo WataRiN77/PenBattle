@@ -19,10 +19,12 @@ using UnityEngine;
 ///    （视觉效果靠 `GetComponentInParent<BurnEffect>()` 取层数，所以"让客户端也有组件"
 ///     比"给视觉再开一条数据通道"改动小得多。）
 ///
-/// 7. **血条分母同步** —— 客户端不跑 ApplyConfig / ApplyAll，本地的耐久上限停在预制体默认值，
-///    光同步"掉血"会让两边血条比例永远对不上（分子一样分母不同）。这里补一条纯数据通道
-///    `_maxDurability`。体型（Size 强化）反而不需要额外通道 —— 预制体的 NetworkTransform
-///    已开 SyncScaleX/Y/Z，localScale 会自动同步。
+/// 7. **血条分母 / 可操作状态同步** —— 客户端既不跑 ApplyConfig / ApplyAll，也不跑出界判定，
+///    本地这两个值都会和房主分叉，各补一条纯数据通道：
+///      · `_maxDurability`：血条**分母**（耐久上限被「耐久强化 / 坚硬」改过）
+///      · `_active`：还能不能操作（出界 / 淘汰后房主置 false，客户端 RaycastPen 会读）
+///    体型（Size 强化）**不需要**额外通道 —— 预制体的 NetworkTransform 已开 SyncScaleX/Y/Z，
+///    localScale 会自动同步；别手写 _scale 通道，会和 NetworkTransform 抢着写同一个值。
 ///    **仍然不挂任何被动组件** —— 被动 OnEnable 会订阅 9 个事件，客户端挂上就真的会执行玩法逻辑
 ///    （点燃扣血、冲击波推刚体、粘液改摩擦），和"客户端不参与计算"直接冲突。
 [RequireComponent(typeof(NetworkObject))]
@@ -52,6 +54,12 @@ public class PenNetworkBridge : NetworkBehaviour
     private readonly NetworkVariable<float> _maxDurability = new NetworkVariable<float>(
         0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    // 这支笔还能不能操作（出界/淘汰后房主会置 false）。
+    // 客户端的 RaycastPen 会读 isActive，必须和房主一致；否则客户端心里这套状态是错的。
+    // 1 = 可操作，0 = 已失效
+    private readonly NetworkVariable<int> _active = new NetworkVariable<int>(
+        1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
     // 笔的缩放（体型强化）**不需要单独通道**：
     // 笔预制体的 NetworkTransform 已开 SyncScaleX/Y/Z，RefreshModifiedStats 写进 localScale
     // 的结果由它自动同步过去；客户端 ResetPen 改写 localScale 也不会回流到房主（非权威端不上报）。
@@ -78,6 +86,9 @@ public class PenNetworkBridge : NetworkBehaviour
 
     /// <summary>血条分母（耐久上限）。0 表示还没收到过同步值。</summary>
     public float MaxDurability => _maxDurability.Value;
+
+    /// <summary>这支笔是否还能操作（房主权威）。出界/淘汰后为 false。</summary>
+    public bool IsActive => _active.Value != 0;
 
     private Rigidbody _rb;
     private PenController _pen;
@@ -106,10 +117,12 @@ public class PenNetworkBridge : NetworkBehaviour
         _burnStacks.OnValueChanged += OnBurnStacksChanged;
         _slimeStacks.OnValueChanged += OnSlimeStacksChanged;
         _freezeTurns.OnValueChanged += OnFreezeChanged;
+        _active.OnValueChanged += OnActiveChanged;
 
         ApplyPenId();
         ApplyConfigVisual();
         ApplyVisibility();
+        ApplyActive();
 
         // 晚进来的客户端不会收到"初始值变化"回调，必须主动建一次镜像
         ApplyStatusMirror();
@@ -122,6 +135,7 @@ public class PenNetworkBridge : NetworkBehaviour
         {
             _durability.Value = _pen.StatusDurability;
             _maxDurability.Value = _pen.maxStatusDurability;
+            _active.Value = _pen.isActive ? 1 : 0;
         }
     }
 
@@ -140,6 +154,10 @@ public class PenNetworkBridge : NetworkBehaviour
         // 血条分母：耐久上限会被「耐久强化 / 坚硬」改动，客户端自己算不出来
         if (!Mathf.Approximately(_maxDurability.Value, _pen.maxStatusDurability))
             _maxDurability.Value = _pen.maxStatusDurability;
+
+        // 可操作状态：出界/淘汰后房主会置 false，客户端必须跟着走
+        int active = _pen.isActive ? 1 : 0;
+        if (_active.Value != active) _active.Value = active;
 
         PollStatusEffects();
     }
@@ -175,6 +193,7 @@ public class PenNetworkBridge : NetworkBehaviour
         _burnStacks.OnValueChanged -= OnBurnStacksChanged;
         _slimeStacks.OnValueChanged -= OnSlimeStacksChanged;
         _freezeTurns.OnValueChanged -= OnFreezeChanged;
+        _active.OnValueChanged -= OnActiveChanged;
     }
 
     // ================= 归属 =================
@@ -244,6 +263,22 @@ public class PenNetworkBridge : NetworkBehaviour
 
         _visible.Value = visible ? 1 : 0;
         ApplyVisibility();
+    }
+
+    // ================= 可操作状态 =================
+
+    private void OnActiveChanged(int _, int __) => ApplyActive();
+
+    /// <summary>
+    /// 客户端：跟随房主的 isActive。
+    /// 客户端的 RaycastPen 会读这个字段决定能不能选这支笔 —— 一旦本端自己判（误触出界、
+    /// 淘汰），就会和房主分叉，出现"房主认为还能打、客户端认为已经废了"的错位。
+    /// </summary>
+    private void ApplyActive()
+    {
+        if (IsServer || _pen == null) return;
+
+        _pen.isActive = _active.Value != 0;
     }
 
     // ================= 状态效果：客户端镜像 =================

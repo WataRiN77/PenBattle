@@ -475,9 +475,31 @@ public class InputManager : MonoBehaviour
 
     private void HandleCharging()
     {
+        // ① 笔已经不该由我操作了（被淘汰 / 回合被切走）→ 立即复位，别让状态残留
+        if (_selectedPen == null || !CanOperate(_selectedPen))
+        {
+            DeselectPen();
+            return;
+        }
+
+        // ② 松开 → 发射
         if (Input.GetMouseButtonUp(0))
         {
             LaunchPen();
+            return;
+        }
+
+        // ③ 【自愈】Charging 的前提是鼠标一直按着。
+        //    GetMouseButtonUp 在某些情况下会**丢**：Game 窗口失焦（切到 Console / 浏览器 /
+        //    Inspector）、Editor 暂停后恢复、Alt+Tab 出去又回来。
+        //    一旦丢了，这里就永远等不到松开 → 状态死在 Charging，而 Update 的分派只会走
+        //    HandleCharging，永远回不到 HandleIdle（选笔）→ 表现就是"点笔完全没反应"，
+        //    只有按右键才解得开。这里用"当前是否按着"兜一道底。
+        //    ⚠️ 顺序必须在 GetMouseButtonUp 之后：松开的那一帧 GetMouseButton 也是 false。
+        if (!Input.GetMouseButton(0))
+        {
+            Debug.Log("[操作] Charging 状态下鼠标已经松开了（松开事件丢失），复位到 Idle");
+            DeselectPen();
             return;
         }
 
@@ -578,21 +600,35 @@ public class InputManager : MonoBehaviour
         pen = null;
         hitPoint = Vector3.zero;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, penLayerMask))
-        {
-            PenController target = hit.collider.GetComponentInParent<PenController>();
-            if (target != null && target.isActive)
-            {
-                // ===== 操作权校验：既要"轮到我的回合"，也要"这支笔是我的" =====
-                if (!CanOperate(target))
-                    return false;
 
-                pen = target;
-                hitPoint = hit.point;
-                return true;
-            }
+        if (!Physics.Raycast(ray, out RaycastHit hit, 100f, penLayerMask))
+        {
+            // 最常见的原因：笔不在鼠标下面（位置没同步过来 / 被隐藏 / layer 配错）
+            LogOperateBlocked($"射线没打到任何笔（layerMask={penLayerMask.value}）");
+            return false;
         }
-        return false;
+
+        PenController target = hit.collider.GetComponentInParent<PenController>();
+
+        if (target == null)
+        {
+            LogOperateBlocked($"射线打到了 {hit.collider.name}，但它身上没有 PenController");
+            return false;
+        }
+
+        if (!target.isActive)
+        {
+            LogOperateBlocked($"{target.name}（penId={target.penId}）的 isActive=false");
+            return false;
+        }
+
+        // ===== 操作权校验：既要"轮到我的回合"，也要"这支笔是我的" =====
+        if (!CanOperate(target))
+            return false;
+
+        pen = target;
+        hitPoint = hit.point;
+        return true;
     }
 
     private void SelectPen(PenController pen)

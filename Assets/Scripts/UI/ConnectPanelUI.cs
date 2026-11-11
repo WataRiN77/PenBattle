@@ -48,6 +48,7 @@ public class ConnectPanelUI : MonoBehaviour
 	[SerializeField] private float refreshInterval = 0.2f;
 
 	private float _timer;
+	private bool _hiddenForMatch;
 
 	private void Awake()
 	{
@@ -82,6 +83,20 @@ public class ConnectPanelUI : MonoBehaviour
 		if (_timer > 0f) return;
 
 		_timer = refreshInterval;
+
+		// 对局开始了 → 收起连接面板，只做一次。
+		// 先让 UIManager 走一遍 EnterMatch（收模态 + 显示 HUD）；
+		// 然后**无条件**把自己关掉 —— 万一 UIManager 上没绑 connectPanel 引用，
+		// EnterMatch 是收不掉这个面板的，不能指望它。
+		if (!_hiddenForMatch && NetworkLauncher.IsInMatch())
+		{
+			_hiddenForMatch = true;
+
+			if (UIManager.Instance != null) UIManager.Instance.EnterMatch();
+			gameObject.SetActive(false);
+			return;
+		}
+
 		Refresh();
 	}
 

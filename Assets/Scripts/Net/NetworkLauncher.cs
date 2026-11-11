@@ -206,6 +206,22 @@ public class NetworkLauncher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 对局是否已经开始。大厅/连接类界面用它决定该不该收起自己。
+    ///
+    /// 判据优先用 `NetworkMatchFlow.MatchStarted` —— 它只取决于「开始游戏」那一帧，
+    /// 房主写下、客户端由 RPC 收到，两端一致，不受各自对局状态影响；
+    /// 没有 flow（单机直接调 BeginMatch 测试）时，退回看 GameManager 的对局状态。
+    /// </summary>
+    public static bool IsInMatch()
+    {
+        var flow = NetworkMatchFlow.Instance;
+        if (flow != null && flow.MatchStarted) return true;
+
+        var gm = GameManager.Instance;
+        return gm != null && (gm.RoundNumber > 0 || gm.Phase != GameManager.TurnPhase.Idle);
+    }
+
     /// <summary>连接详情（Host 显示连接数，Client 显示 clientId）—— 没连上时为空</summary>
     public string ConnectionInfo
     {
@@ -225,6 +241,10 @@ public class NetworkLauncher : MonoBehaviour
     private void OnGUI()
     {
         if (!showUI) return;
+
+        // 进了对局，这块联机面板就没用了，还挡视野 —— 直接收起来。
+        // （正式 UI 走 UIManager.EnterMatch；这里是 IMGUI 兜底，两边判据同一套。）
+        if (IsInMatch()) return;
 
         bool running = NM != null && (NM.IsClient || NM.IsServer);
 

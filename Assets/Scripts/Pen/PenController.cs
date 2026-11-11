@@ -360,29 +360,44 @@ public class PenController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 用于检测"出界"：只要碰到桌子边缘，就算一次出界接触（待补）
-        if (other.CompareTag("OutOfBounds"))
+        if (!other.CompareTag("OutOfBounds")) return;
+
+        // 🔴 【联机】出界是**玩法判定**，只有权威端（房主 / 单机）能跑。
+        //
+        // 客户端刚体是 kinematic、位置由 NetworkTransform 直接搬运，但这不代表它不会收
+        // trigger 回调 —— kinematic 一样会触发 OnTriggerEnter。于是：
+        //   · 换地图 / 小局重开时，笔会被"传送"经过 OutOfBounds 触发区；
+        //   · 客户端误判出界 → isActive = false；
+        //   · 而客户端**不跑 ResetPen**（StartNewRound 里有 IsAuthority 守卫），
+        //     没有任何代码把它置回 true。
+        // 结果就是这支笔在本端永久不可操作 —— RaycastPen 一律拒绝，
+        // 表现成「轮到我、HUD 显示一切正常，却点不动笔」（第二小局换图时必现）。
+        if (GameManager.Instance != null && !GameManager.Instance.IsAuthority)
         {
-            if (!isActive) return;
-            isActive = false;
-
-            EventBus.Instance.Publish(new PenOutOfBoundsEvent
-            {
-                penId = this.penId,
-                outOfBoundsPosition = transform.position
-            });
-
-            EventBus.Instance.Publish(new PenEliminatedEvent
-            {
-                penId = this.penId,
-                killerId = null, // 由 BattleManager 决定是否归属对方
-                eliminationReason = "OutOfBounds"
-            });
-
-            Debug.Log($"Pen({penId}) is out of desk.");
-
-            // 出界后立刻把笔停住
-            _rb.isKinematic = true;
+            Debug.Log($"[联机] 客户端忽略 {penId} 的出界触发（玩法判定只在房主侧跑）");
+            return;
         }
+
+        if (!isActive) return;
+        isActive = false;
+
+        EventBus.Instance.Publish(new PenOutOfBoundsEvent
+        {
+            penId = this.penId,
+            outOfBoundsPosition = transform.position
+        });
+
+        EventBus.Instance.Publish(new PenEliminatedEvent
+        {
+            penId = this.penId,
+            killerId = null, // 由 BattleManager 决定是否归属对方
+            eliminationReason = "OutOfBounds"
+        });
+
+        Debug.Log($"Pen({penId}) is out of desk.");
+
+        // 出界后立刻把笔停住
+        _rb.isKinematic = true;
     }
 
     // ====== 被动 / 状态效果接口 ======

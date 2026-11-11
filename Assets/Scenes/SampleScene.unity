@@ -1087,8 +1087,8 @@ MonoBehaviour:
   deskLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  maxLaunchForce: 17
-  powerSensitivity: 3
+  maxLaunchForce: 15
+  powerSensitivity: 2
   togglePlaceKey: 112
   placeY: 0.4
 --- !u!114 &375564469

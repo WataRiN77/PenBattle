@@ -66,6 +66,13 @@ public class NetworkMatchFlow : NetworkBehaviour
             ? _penConfigs[_myChoiceIndex]
             : null;
 
+    /// <summary>
+    /// 对局是否已经开始。
+    /// 房主在点下「开始游戏」那一刻置位（比正式开打更早，正好盖住开局强化阶段）；
+    /// 客户端由 MatchStartingClientRpc 置位。两端一致，只取决于这条消息，不依赖各自对局状态。
+    /// </summary>
+    public bool MatchStarted => _matchStarted;
+
     /// <summary>这个席位有没有人（HUD 用它决定显示哪几行）</summary>
     public bool HasPlayerIndex(int playerIndex)
     {
